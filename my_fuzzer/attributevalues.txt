@@ -1,0 +1,2400 @@
+#   Copyright 2017 Google Inc. All Rights Reserved.
+#   Licensed under the Apache License, Version 2.0 (the "License");
+#   you may not use this file except in compliance with the License.
+#   You may obtain a copy of the License at
+#
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
+#   Unless required by applicable law or agreed to in writing, software
+#   distributed under the License is distributed on an "AS IS" BASIS,
+#   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#   See the License for the specific language governing permissions and
+#   limitations under the License.
+
+
+<charset> = <attributestring>
+<charset> = UTF-7
+<charset> = UTF-8
+<charset> = UTF-16
+<charset> = UTF-32
+<charset> = EUC-JP
+<charset> = ISO-2022-JP
+<charset> = iso-8859-1
+<charset> = Big5
+<charset> = Shift_JIS
+<charset> = UTF-8
+<charset> = US-ASCII
+
+<onoff> = on
+<onoff> = off
+
+<abbr_value> = <attributestring>
+
+<accept_value> = <attributestring>
+<accept_value> = audio/*
+<accept_value> = video/*
+<accept_value> = image/*
+
+<accept-charset_value> = <charset>
+
+<accepts-touch_value> = synthetic
+<accepts-touch_value> = raw
+
+<accesskey_value> = <attributechar>
+
+<accumulate_value> = sum
+<accumulate_value> = none
+
+#<action_value> = <attributestring>
+
+<additive_value> = sum
+<additive_value> = replace
+
+#<align_value> =
+<align_value> = char
+<align_value> = LEFT
+<align_value> = right
+<align_value> = center
+<align_value> = bottom
+<align_value> = foobar
+<align_value> = top
+<align_value> = BOTTOM
+<align_value> = MIDDLE
+<align_value> = ABSMIDDLE
+<align_value> = Right
+<align_value> = middle
+<align_value> = bad
+<align_value> = RIGHT
+<align_value> = Left
+<align_value> = absmiddle
+<align_value> = left
+<align_value> = CENTER
+<align_value> = justify
+
+<alink_value> = <color>
+
+<allowfullscreen_value> = <boolean>
+
+<alt_value> = <attributestring>
+
+<archive_value> = <attributestring>
+
+<aria-activedescendant_value> = <elementid>
+
+<aria-autocomplete_value> = list
+
+<aria-atomic_value> = <boolean>
+
+<aria-busy_value> = <boolean>
+
+<aria-checked_value> = mixed
+<aria-checked_value> = <boolean>
+
+<aria-controls_value> = <elementid>
+
+<aria-describedby_value> = <elementid>
+
+<aria-disabled_value> = <boolean>
+
+<aria-dropeffect_value> = copy
+<aria-dropeffect_value> = move
+<aria-dropeffect_value> = link
+<aria-dropeffect_value> = popup
+<aria-dropeffect_value> = execute
+<aria-dropeffect_value> = none
+
+<aria-expanded_value> = <boolean>
+
+<aria-flowto_value> = <elementid>
+
+<aria-grabbed_value> = <boolean>
+
+<aria-haspopup_value> = <boolean>
+
+<aria-help_value> = <elementid>
+
+<aria-hidden_value> = <boolean>
+
+<aria-invalid_value> = <boolean>
+
+<aria-label_value> = <attributestring>
+
+<aria-labeledby_value> = <elementid>
+
+<aria-labelledby_value> = <elementid>
+
+<aria-level_value> = <fuzzint>
+
+<aria-live_value> = off
+<aria-live_value> = polite
+<aria-live_value> = assertive
+
+<aria-multiline_value> = <boolean>
+
+<aria-multiselectable_value> = <boolean>
+
+<aria-name_value> = <attributestring>
+
+<aria-orientation_value> = horizontal
+<aria-orientation_value> = vertical
+
+<aria-owns_value> = <elementid>
+
+<aria-posinset_value> = <fuzzint>
+
+<aria-pressed_value> = <boolean>
+
+<aria-readonly_value> = <boolean>
+
+<aria-relevant_value> = additions
+<aria-relevant_value> = removals
+<aria-relevant_value> = text
+<aria-relevant_value> = all
+
+<aria-required_value> = <boolean>
+
+<aria-selected_value> = <boolean>
+
+<aria-setsize_value> = <fuzzint>
+
+<aria-sort_value> = ascending
+<aria-sort_value> = descending
+
+<aria-valuemax_value> = <fuzzint>
+
+<aria-valuemin_value> = <fuzzint>
+
+<aria-valuenow_value> = <fuzzint>
+
+<aria-valuetext_value> = <attributestring>
+
+<as_value> = style
+<as_value> = audio
+<as_value> = script
+<as_value> = track
+<as_value> = media
+<as_value> = image
+<as_value> = video
+<as_value> = font
+
+<async_value> = <boolean>
+
+<autocomplete_value> = <onoff>
+
+<autofocus_value> = autofocus
+
+<autoload_value> = autoload
+
+<autoplay_value> = autoplay
+
+<axis_value> = <attributestring>
+
+<azimuth_value> = <fuzzint>
+
+<background_value> = <attributestring>
+
+<background-color_value> = <color>
+
+<basefrequency_value> = <float>
+
+<baseprofile_value> = full
+<baseprofile_value> = tiny
+
+<behavior_value> = slide
+<behavior_value> = alternate
+<behavior_value> = scroll
+
+<bgcolor_value> = <color>
+
+<bgproperties_value> = fixed
+
+<border_value> = 0
+<border_value> = 1
+<border_value> = <fuzzint>px
+
+<bordercolor_value> = <color>
+
+<buffered-rendering_value> = dynamic
+<buffered-rendering_value> = static
+
+<can-process-drag_value> = <boolean>
+
+<case_value> = second
+<case_value> = first
+
+<capture_value> = capture
+
+<cellpadding_value> = <fuzzint>
+
+<cellspacing_value> = <fuzzint>
+
+<challenge_value> = <attributestring>
+
+<char_value> = <attributechar>
+
+<charoff_value> = <fuzzint>
+
+<charset_value> = <charset>
+
+<checked_value> = checked
+
+<cite_value> = <attributestring>
+
+<class_value> = <class>
+
+<classid_value> = <attributestring>
+
+<clear_value> = none
+<clear_value> = left
+<clear_value> = ALL
+<clear_value> = all
+
+<code_value> = <attributestring>
+
+<codebase_value> = <attributestring>
+
+<codetype_value> = image/gif
+
+<color_value> = <color>
+
+<cols_value> = <fuzzint>
+<cols_value> = <fuzzint>,<fuzzint>
+
+<colspan_value> = <fuzzint>
+
+<compact_value> = compact
+
+<content_value> = <attributestring>
+
+<contenteditable_value> = false
+<contenteditable_value> = inherit
+<contenteditable_value> = plaintext-only
+<contenteditable_value> = true
+
+<contextmenu_value> = <elementid>
+
+<controls_value> = controls
+
+<coords_value> = <fuzzint>, <fuzzint>, <fuzzint>, <fuzzint>
+
+<crossorigin_value> = crossorigin
+
+<data_value> = <attributestring>
+
+<datetime_value> = January 2, 2002
+<datetime_value> = January 1, 2002
+<datetime_value> = 2000-02-01T03:04:05Z
+
+<declare_value> = declare
+
+<default_value> = <attributestring>
+
+<defer_value> = defer
+
+<desc_value> = <attributestring>
+
+<description_value> = <attributestring>
+
+<dir_value> = LTR
+<dir_value> = auto
+<dir_value> = ltr
+<dir_value> = RTL
+<dir_value> = rtl
+
+<direction_value> = ltr
+<direction_value> = rtl
+
+<dirname_value> = <attributestring>
+
+<disabled_value> = disabled
+
+<display_value> = none
+<display_value> = block
+
+<disposition_value> = attachment
+
+<download_value> = <attributestring>
+
+<draggable_value> = <boolean>
+
+<encoding_value> = TEXT/HTML
+<encoding_value> = text/html
+<encoding_value> = TeX
+<encoding_value> = MathML-Presentation
+<encoding_value> = foo
+<encoding_value> = application/xhtml+xml
+
+<enctype_value> = multipart/form-data
+<enctype_value> = text/plain
+<enctype_value> = application/x-www-form-urlencoded
+
+<expanded_value> = <boolean>
+
+<face_value> = Arial, helvetica
+<face_value> = Arial
+<face_value> = ms sans serif, helvetica
+<face_value> = Helvetica
+<face_value> = Verdana
+<face_value> = Arial,Helvetica
+<face_value> = fantasy
+<face_value> = arial,helvetica,sans-serif
+<face_value> = Helvetica, Arial
+<face_value> = sans-serif, arial
+<face_value> = Arial,Helvetica,sans-serif
+<face_value> = arial
+<face_value> = Courier
+<face_value> = helvetica
+<face_value> = verdana
+<face_value> = Arial,helvetica
+<face_value> = Times New Roman
+<face_value> =  helvetica
+<face_value> = monospace
+<face_value> = Arial, sans-serif
+<face_value> = Lucida Grande
+<face_value> = ARIAL,HELVETICA
+<face_value> = serif
+<face_value> = Monaco
+<face_value> = arial,helvetica
+<face_value> = Verdana, Arial
+<face_value> = 'courier new', monospace
+<face_value> = arial, sans-serif
+<face_value> = sans-serif
+<face_value> = Comic Sans MS
+<face_value> = n8 n26
+<face_value> = ariel,helvetica
+<face_value> = cursive
+<face_value> = Times
+
+<focus_value> = <boolean>
+
+<focused_value> = <boolean>
+
+<for_value> = <elementid>
+
+<form_value> = <elementid>
+
+<formaction_value> = <eventhandler>
+
+<formenctype_value> = text/plain
+
+<formmethod_value> = post
+<formmethod_value> = get
+
+<formnovalidate_value> = formnovalidate
+
+<formtarget_value> = <elementid>
+
+<frame_value> = box
+<frame_value> = BOX
+<frame_value> = vsides
+<frame_value> = hsides
+<frame_value> = void
+<frame_value> = below
+<frame_value> = lhs
+<frame_value> = above
+<frame_value> = border
+<frame_value> = rhs
+
+<frameborder_value> = 1
+<frameborder_value> = 0
+
+<framemargin_value> = 0
+<framemargin_value> = 1
+
+<framespacing_value> = 1
+<framespacing_value> = 0
+
+<headers_value> = <elementid>
+
+<height_value> = <fuzzint>
+
+<hidden_value> = hidden
+
+<high_value> = <fuzzint>
+
+<href_value> = <attributestring>
+
+<hreflang_value> = <lang_value>
+
+<hspace_value> = <fuzzint>
+
+<http-equiv_value> = Content-Security-Policy
+<http-equiv_value> = Content-Language
+<http-equiv_value> = Content-Style-Type
+<http-equiv_value> = cache-control
+<http-equiv_value> = Accept-CH
+<http-equiv_value> = Content-Script-Type
+<http-equiv_value> = Refresh
+<http-equiv_value> = Content-Security-Policy-Report-Only
+<http-equiv_value> = pragma
+<http-equiv_value> = origin-trial
+<http-equiv_value> = Suborigin
+<http-equiv_value> = refresh
+<http-equiv_value> = X-UA-Compatible
+<http-equiv_value> = Content-Type
+
+<icon_value> = <attributestring>
+
+#<id_value> = <elementid>
+
+<incremental_value> = incremental
+
+<indeterminate_value> = <boolean>
+
+<inner_value> = 1
+
+<inputmode_value> = verbatim
+<inputmode_value> = latin
+<inputmode_value> = latin-name
+<inputmode_value> = latin-prose
+<inputmode_value> = full-width-latin
+<inputmode_value> = kana
+<inputmode_value> = katakana
+<inputmode_value> = numeric
+<inputmode_value> = tel
+<inputmode_value> = email
+<inputmode_value> = url
+
+<is_value> = x-pass
+<is_value> = x-body
+<is_value> = x-bar
+<is_value> = x-iframe
+<is_value> = x-g
+<is_value> = x-rect
+<is_value> = x-a
+<is_value> = x-x
+<is_value> = x-green
+<is_value> = x-y
+
+<ismap_value> = ismap
+
+<item_value> = <attributestring>
+
+<itemid_value> = <attributestring>
+
+<itemprop_value> = <attributestring>
+
+<itemref_value> = <elementid>
+
+<itemscope_value> = <attributestring>
+
+<itemtype_value> = <attributestring>
+
+<keytype_value> = RSA
+
+<kind_value> = captions
+<kind_value> = chapters
+<kind_value> = descriptions
+<kind_value> = metadata
+<kind_value> = subtitles
+
+<label_value> = <attributestring>
+
+<lang_value> = fr-CH
+<lang_value> = gu
+<lang_value> = tr_TR
+<lang_value> = fr-CA
+<lang_value> = nd
+<lang_value> = ru-ru
+<lang_value> = rof
+<lang_value> = zh-Hant
+<lang_value> = shi
+<lang_value> = sv
+<lang_value> = twq
+<lang_value> = mfe
+<lang_value> = en-GB
+<lang_value> = lg
+<lang_value> = xog
+<lang_value> = ln
+<lang_value> = lo
+<lang_value> = nus
+<lang_value> = tr
+<lang_value> = ko-kr
+<lang_value> = de-CH
+<lang_value> = CUSTOM
+<lang_value> = lv
+<lang_value> = en-au
+<lang_value> = lt
+<lang_value> = ksf
+<lang_value> = dje
+<lang_value> = th
+<lang_value> = ksb
+<lang_value> = he
+<lang_value> = ta
+<lang_value> = en-HanT
+<lang_value> = en-HanS
+<lang_value> = yo
+<lang_value> = lt-LT
+<lang_value> = ja-latn
+<lang_value> = lt@foo=bar
+<lang_value> = de
+<lang_value> = mgo
+<lang_value> = da
+<lang_value> = dav
+<lang_value> = dyo
+<lang_value> = dz
+<lang_value> = el-GR
+<lang_value> = kkj
+<lang_value> = ja-jp
+<lang_value> = vi-vn
+<lang_value> = qs
+<lang_value> = ko-Hang
+<lang_value> = bas
+<lang_value> = tr@foo=bar
+<lang_value> = zh-hant
+<lang_value> = shi-Tfng
+<lang_value> = guz
+<lang_value> = ja-Hrkt
+<lang_value> = sw
+<lang_value> = el
+<lang_value> = en
+<lang_value> = zh
+<lang_value> = az-AZ
+<lang_value> = teo
+<lang_value> = en-TW
+<lang_value> = kde
+<lang_value> = zh_Hans
+<lang_value> = mas
+<lang_value> = zh-HK
+<lang_value> = bg
+<lang_value> = el@foo=bar
+<lang_value> = eu
+<lang_value> = et
+<lang_value> = vun
+<lang_value> = es
+<lang_value> = seh
+<lang_value> = en-gb
+<lang_value> = ru
+<lang_value> = rw
+<lang_value> = jgo
+<lang_value> = ff
+<lang_value> = luy
+<lang_value> = chr
+<lang_value> = ti-ER
+<lang_value> = zh-cn
+<lang_value> = mua
+<lang_value> = und-Zxxx
+<lang_value> = rn
+<lang_value> = ro
+<lang_value> = luo
+<lang_value> = EL
+<lang_value> = sbp
+<lang_value> = az@foo=bar
+<lang_value> = ko-Kore
+<lang_value> = bm
+<lang_value> = bn
+<lang_value> = cgg
+<lang_value> = az-Cyrl
+<lang_value> = y-test
+<lang_value> = nmg
+<lang_value> = asa
+<lang_value> = kea
+<lang_value> = br
+<lang_value> = mer
+<lang_value> = ja
+<lang_value> = ms
+<lang_value> = ebu
+<lang_value> = ko-KR
+<lang_value> = LT
+<lang_value> = en-fr
+<lang_value> = dua
+<lang_value> = en-GB-wa
+<lang_value> = en-HanS-JP
+<lang_value> = xh
+<lang_value> = yav
+<lang_value> = cn
+<lang_value> = brx
+<lang_value> = ca
+<lang_value> = en-us
+<lang_value> = en-CN
+<lang_value> = xx
+<lang_value> = en-KR
+<lang_value> = cs
+<lang_value> = ses
+<lang_value> = x-test
+<lang_value> = vai
+<lang_value> = pt
+<lang_value> = to
+<lang_value> = az_AZ
+<lang_value> = zh-tw
+<lang_value> = swc
+<lang_value> = nnh
+<lang_value> = lt_LT
+<lang_value> = custom
+<lang_value> = ee
+<lang_value> = de-de
+<lang_value> = lu
+<lang_value> = tr-TR
+<lang_value> = vi
+<lang_value> = ja-Jpan
+<lang_value> = pt-PT
+<lang_value> = he-il
+<lang_value> = pl
+<lang_value> = hr
+<lang_value> = en-US
+<lang_value> = hu
+<lang_value> = hi
+<lang_value> = en-JP
+<lang_value> = jmc
+<lang_value> = ha
+<lang_value> = ja-Kana
+<lang_value> = en-HanT-JP
+<lang_value> = ar-eg
+<lang_value> = mg
+<lang_value> = te
+<lang_value> = bem
+<lang_value> = ml
+<lang_value> = kln
+<lang_value> = mk
+<lang_value> = ur
+<lang_value> = bez
+<lang_value> = zh-CN
+<lang_value> = sr
+<lang_value> = sr-Latn
+<lang_value> = tr-US
+<lang_value> = mr
+<lang_value> = my
+<lang_value> = sq
+<lang_value> = af
+<lang_value> = khq
+<lang_value> = ak
+<lang_value> = am
+<lang_value> = it
+<lang_value> = en-Hixie
+<lang_value> = ar-AE
+<lang_value> = ar
+<lang_value> = fr-fr
+<lang_value> = zu
+<lang_value> = el_GR
+<lang_value> = saq
+<lang_value> = ja-JP
+<lang_value> = tzm
+<lang_value> = id
+<lang_value> = ig
+<lang_value> = az
+<lang_value> = nl
+<lang_value> = nn
+<lang_value> = no
+<lang_value> = nb
+<lang_value> = bs-Cyrl
+<lang_value> = TR
+<lang_value> = ne
+<lang_value> = vai-Latn
+<lang_value> = lt-US
+<lang_value> = hi-in
+<lang_value> = naq
+<lang_value> = nyn
+<lang_value> = z-test
+<lang_value> = kab
+<lang_value> = fr
+<lang_value> = rwk
+<lang_value> = en-HK
+<lang_value> = lag
+<lang_value> = kam
+<lang_value> = fa
+<lang_value> = ja-Hira
+<lang_value> = el-gr
+<lang_value> = x
+<lang_value> = fi
+<lang_value> = uk
+<lang_value> = xyzzy
+<lang_value> = gsw
+<lang_value> = zh-TW
+<lang_value> = ki
+<lang_value> = ewo
+<lang_value> = ko
+<lang_value> = kn
+<lang_value> = km
+<lang_value> = sk
+<lang_value> = si
+<lang_value> = so
+<lang_value> = sn
+<lang_value> = sl
+<lang_value> = sg
+<lang_value> = el-US
+<lang_value> = agq
+
+<language_value> = javascript
+<language_value> = vbscript
+
+<layout_value> = auto
+<layout_value> = fixed
+
+<left_value> = <fuzzint>
+
+<leftmargin_value> = <fuzzint>
+
+<link_value> = <color>
+
+<list_value> = <elementid>
+
+<longdesc_value> = <attributestring>
+
+<loop_value> = <fuzzint>
+
+<loopend_value> = <fuzzint>
+
+<loopstart_value> = <fuzzint>
+
+<low_value> = <fuzzint>
+
+<lowsrc_value> = <attributestring>
+
+<manifest_value> = <attributestring>
+
+<margin_value> = <fuzzint>px <fuzzint>px
+
+<marginheight_value> = <fuzzint>
+
+<marginwidth_value> = <fuzzint>
+
+<max_value> = <fuzzint>
+
+<maxlength_value> = <fuzzint>
+
+<mayscript_value> = <boolean>
+
+<media_value> = all
+<media_value> = aural
+<media_value> = braille
+<media_value> = handheld
+<media_value> = projection
+<media_value> = print
+<media_value> = screen
+<media_value> = tty
+<media_value> = tv
+<media_value> = screen and (min-width:<fuzzint>px)
+<media_value> = screen and (max-width:<fuzzint>px)
+<media_value> = screen and (min-height:<fuzzint>px)
+<media_value> = screen and (max-height:<fuzzint>px)
+
+<menu_value> = <elementid>
+
+<method_value> = get
+<method_value> = put
+<method_value> = post
+
+<min_value> = <fuzzint>
+
+<minlength_value> = <fuzzint>
+
+<mode_value> = multiply
+<mode_value> = screen
+<mode_value> = showing
+<mode_value> = normal
+
+<multiple_value> = multiple
+
+<muted_value> = muted
+
+<name_value> = <attributestring>
+
+<nohref_value> = nohref
+
+<nonce_value> = nonce
+
+<noresize_value> = noresize
+
+<noshade_value> = noshade
+
+<novalidate_value> = novalidate
+
+<nowrap_value> = nowrap
+
+<open_value> = true
+
+<optimum_value> = <fuzzint>
+
+<pattern_value> = <attributestring>
+
+<ping_value> = <attributestring>
+
+<placeholder_value> = <attributestring>
+
+<playcount_value> = <fuzzint>
+
+<pluginspage_value> = <attributestring>
+
+<poster_value> = <attributestring>
+
+<preload_value> = auto
+<preload_value> = none
+<preload_value> = metadata
+
+<profile_value> = <attributestring>
+
+<prompt_value> = <attributestring>
+
+<quality_value> = high
+
+<radiogroup_value> = group
+
+<readonly_value> = readonly
+
+<ref_value> = author
+
+<referrerpolicy_value> = origin
+<referrerpolicy_value> = unsafe-url
+<referrerpolicy_value> = origin-when-crossorigin
+<referrerpolicy_value> = never
+<referrerpolicy_value> = no-referrer
+<referrerpolicy_value> = no-referrer-when-downgrade
+
+<rel_value> = alternate
+<rel_value> = author
+<rel_value> = bookmark
+<rel_value> = external
+<rel_value> = help
+<rel_value> = license
+<rel_value> = next
+<rel_value> = nofollow
+<rel_value> = noreferrer
+<rel_value> = noopener
+<rel_value> = prev
+<rel_value> = search
+<rel_value> = tag
+
+<required_value> = required
+
+<results_value> = <fuzzint>
+
+<rev_value> = alternate
+<rev_value> = stylesheet
+<rev_value> = start
+<rev_value> = next
+<rev_value> = prev
+<rev_value> = contents
+<rev_value> = index
+<rev_value> = glossary
+<rev_value> = copyright
+<rev_value> = chapter
+<rev_value> = section
+<rev_value> = subsection
+<rev_value> = appendix
+<rev_value> = help
+<rev_value> = bookmark
+
+<reversed_value> = reversed
+
+<right_value> = <fuzzint>
+
+<rightmargin_value> = <fuzzint>
+
+<role_value> = treegrid
+<role_value> = checkbox
+<role_value> = radiogroup
+<role_value> = text
+<role_value> = menuitemcheckbox
+<role_value> = spinbutton
+<role_value> = radio
+<role_value> = slider
+<role_value> = tab
+<role_value> = listbox
+<role_value> = unknownrole checkbox
+<role_value> = textbox
+<role_value> = group
+<role_value> = log
+<role_value> = img
+<role_value> = combobox
+<role_value> = columnheader
+<role_value> = tooltip
+<role_value> = note
+<role_value> = application
+<role_value> = listitem
+<role_value> = row
+<role_value> = presentation
+<role_value> = menuitem
+<role_value> = searchbox
+<role_value> = treeitem
+<role_value> = status
+<role_value> = main
+<role_value> = rowheader
+<role_value> = option
+<role_value> = form
+<role_value> = complementary
+<role_value> = gridcell
+<role_value> = contentinfo
+<role_value> = none
+<role_value> = alert
+<role_value> = alertdialog
+<role_value> = link
+<role_value> = x
+<role_value> = article
+<role_value> = banner
+<role_value> = toolbar
+<role_value> = menuitemradio
+<role_value> = definition
+<role_value> = search
+<role_value> = document
+<role_value> = tree
+<role_value> = marquee
+<role_value> = menubar
+<role_value> = button
+<role_value> = list
+<role_value> = timer
+<role_value> = progressbar
+<role_value> = scrollbar
+<role_value> = separator
+<role_value> = math
+<role_value> = dialog
+<role_value> = menu
+<role_value> = directory
+<role_value> = grid
+<role_value> = tablist
+<role_value> = region
+<role_value> = navigation
+<role_value> = heading
+<role_value> = tabpanel
+
+<row_value> = <fuzzint>
+
+<rows_value> = <fuzzint>
+<rows_value> = <fuzzint>,<fuzzint>
+
+<rowspan_value> = <fuzzint>
+
+<rules_value> = none
+<rules_value> = rows
+<rules_value> = all
+<rules_value> = cols
+<rules_value> = groups
+
+<sandbox_value> = allowScripts allowSameOrigin allowFoobarbloop
+<sandbox_value> = allow-forms allow-scripts
+<sandbox_value> = allow-same-origin allow-scripts
+<sandbox_value> = allow-script allow-same-origin
+<sandbox_value> = allow-same-origin allow-forms allow-scripts
+<sandbox_value> = AlLoW-sCrIpTs allow-same-origin
+<sandbox_value> = allow-scripts allow-same-origin
+<sandbox_value> = allow-pointer-lock allow-scripts
+<sandbox_value> = allow-scripts allow-forms allow-same-origin
+<sandbox_value> = allow-scripts allow-popups allow-forms
+<sandbox_value> = allow-scripts allow-forms allow-same-origin allow-popups
+<sandbox_value> = allow-scripts allow-top-navigation
+<sandbox_value> = allow-same-origin
+<sandbox_value> = allowScripts
+<sandbox_value> = allowScripts allow-same-origin
+<sandbox_value> = allow-scripts allow-same-origin allow-orientation-lock
+<sandbox_value> = allows-cripts allow-same-origin
+<sandbox_value> = aallow-scripts allow-same-origin
+<sandbox_value> = allowscripts allow-same-origin
+<sandbox_value> = allow-scriptss allow-same-origin
+<sandbox_value> = allow-scripts allow-top-navigation allow-same-origin
+<sandbox_value> = allow_scripts allow-same-origin
+<sandbox_value> = allow-scripts allow-same-origin
+<sandbox_value> = allow-scripts allow-popups
+<sandbox_value> = allow-scripts allow-same-origin allow-presentation
+<sandbox_value> = allow-scripts
+
+<scheme_value> = NIST
+
+<scope_value> = colgroup
+<scope_value> = col
+<scope_value> = rowgroup
+<scope_value> = row
+
+<scoped_value> = scoped
+
+<scrollamount_value> = <fuzzint>
+
+<scrolldelay_value> = <fuzzint>
+
+<scrolling_value> = auto
+<scrolling_value> = no
+<scrolling_value> = yes
+
+<seamless_value> = seamless
+
+<seed_value> = <fuzzint>
+
+<select_value> = .<class>
+<select_value> = <hash><elementid>
+
+<selected_value> = selected
+
+<shape_value> = default
+<shape_value> = poly
+<shape_value> = rect
+<shape_value> = circle
+
+<shouldfocus_value> = false
+<shouldfocus_value> = true
+
+<size_value> = <fuzzint>
+
+<sizes_value> = <fuzzint>px
+<sizes_value> = <fuzzint>vw
+
+<slope_value> = -10000
+<slope_value> = 0.5
+<slope_value> = 1
+<slope_value> = 10000
+<slope_value> = 0
+
+<slot_value> = slot1
+<slot_value> = slot2
+
+<span_value> = <fuzzint>
+
+<spellcheck_value> = false
+<spellcheck_value> = true
+
+<src_value> = <imgsrc>
+<src_value> = <audiosrc>
+<src_value> = <videosrc>
+<src_value> = <framesrc>
+
+<srcdoc_value> = <attributestring>
+
+<srcset_value> = <attributestring>
+
+<srclang_value> = <lang_value>
+
+<standby_value> = <attributestring>
+
+<start_value> = <fuzzint>
+
+<startoffset_value> = <float>
+
+<startval_value> = <attributestring>
+
+<step_value> = <fuzzint>
+
+<style_value> = <import from=cssgrammar symbol=declaration5>
+# <style_value> = <declaration5>
+
+
+<summary_value> = <attributestring>
+
+<tabindex_value> = <fuzzint>
+
+<target_value> = <elementid>
+
+<text_value> = <color>
+
+<title_value> = <attributestring>
+
+<topmargin_value> = <fuzzint>
+
+<translate_value> = yes
+<translate_value> = no
+
+<truespeed_value> = <boolean>
+
+<type_value> = checkbox
+<type_value> = decimal
+<type_value> = text
+<type_value> = image/png
+<type_value> = image/foo
+<type_value> = jscript  1.0 
+<type_value> = datetime
+<type_value> = disc
+<type_value> = radio
+<type_value> = application/x-jscript
+<type_value> = CHECKBOX
+<type_value> = application/x-non-existent
+<type_value> = javascript 1.0 x
+<type_value> = disk
+<type_value> = not-a-number
+<type_value> = text/x-javascript
+<type_value> = password
+<type_value> = text/JAVASCRIPT
+<type_value> = menu
+<type_value> = ecmascript 1
+<type_value> = disabled_javascript
+<type_value> = video/x-chicken-face
+<type_value> = video/webm
+<type_value> = video/quicktime
+<type_value> = input
+<type_value> = circle
+<type_value> = application/x-ecmascript
+<type_value> = bogus
+<type_value> = JavaScript 1.5
+<type_value> = javascript1.1
+<type_value> = upper-roman
+<type_value> = text/javascript 
+<type_value> = JavaScript1.5
+<type_value> = text/javascript;x-test=abc
+<type_value> = x-shader/x-vertex
+<type_value> = text/livescript
+<type_value> = JavaScript1.0
+<type_value> = JavaScript1.3
+<type_value> = application/jscript
+<type_value> = turbulence
+<type_value> = text/javascript1
+<type_value> = month
+<type_value> = JavaScript1.2
+<type_value> = JavaScript 1.1.1
+<type_value> = xxxjavascriptxxx
+<type_value> = rotate
+<type_value> = text/javascript
+<type_value> = text/html
+<type_value> = button
+<type_value> = isindex
+<type_value> = application/x-missing-plugin
+<type_value> = text/x-ecmascript
+<type_value> = audio/x-chicken-face
+<type_value> = text/javascript1.0
+<type_value> = text/javascript1.1
+<type_value> = text/vbscript
+<type_value> = text/javascript1.4
+<type_value> = text/javascript1.5
+<type_value> = CIRCLE
+<type_value> = round
+<type_value> = jscript 1
+<type_value> = JavaScript 2.1
+<type_value> = text/xml
+<type_value> = tel
+<type_value> = FILE
+<type_value> = livescript 1
+<type_value> = text/ecmascript
+<type_value> = image/x-icon
+<type_value> = JAVASCRIPT
+<type_value> = module
+<type_value> = popup
+<type_value> = JavaScript1.1
+<type_value> = text/worker
+<type_value> = image/gif;encodings=
+<type_value> = ROUND
+<type_value> = blue
+<type_value> = text/javascript1.2
+<type_value> = NONE
+<type_value> = scale
+<type_value> = matrix
+<type_value> = audio/x-higglety-pigglety
+<type_value> = text/javascript1.3
+<type_value> = something-not-js
+<type_value> = application/x-shockwave-flash
+<type_value> = ecmascript 1.0
+<type_value> = application/x-unavailable
+<type_value> = text/x-isolate
+<type_value> = text/vbs
+<type_value> = JavaScript 1.4
+<type_value> = unknown/unknown
+<type_value> = application/pdf
+<type_value> = application/xml
+<type_value> = text/javascript1.6
+<type_value> = image/webp
+<type_value> = time 
+<type_value> = email
+<type_value> = date-time
+<type_value> = fractalNoise
+<type_value> = image/gif;encodings
+<type_value> = linear
+<type_value> = text/javaScript
+<type_value> = JavaScript 1.0
+<type_value> = javascript
+<type_value> = application/octet-stream
+<type_value> = application/x-blink-test-plugin'
+<type_value> = JavaScript 1.3
+<type_value> = toolbar
+<type_value> = datetime-local
+<type_value> = search
+<type_value> = lower-roman
+<type_value> = TEXT/JAVASCRIPT
+<type_value> = text/something-not-javascript
+<type_value> = BUTTON
+<type_value> = image/*
+<type_value> = video/mp4
+<type_value> = javascript_1.0
+<type_value> = range
+<type_value> = image/png;bla=bla
+<type_value> = application/not-a-real-applet
+<type_value> = context
+<type_value> = HIDDEN
+<type_value> = UPPER-ROMAN
+<type_value> = gamma
+<type_value> = video/mpeg; codecs='avc1.4D400C'
+<type_value> = image/svg+xml
+<type_value> = color
+<type_value> = image
+<type_value> = number
+<type_value> = JavaScript1.4.1
+<type_value> = image/x-unsupported
+<type_value> = JavaScript1.7
+<type_value> = livescript1.1
+<type_value> = table
+<type_value> = livescript 1.0
+<type_value> = application/x-webkit-test-webplugin-persistent
+<type_value> = video/blahblah
+<type_value> = gif
+<type_value> = .gif
+<type_value> = unknown
+<type_value> = *
+<type_value> = upper-alpha
+<type_value> = JavaScript 10.0
+<type_value> = submit
+<type_value> = image/gif
+<type_value> = application/javascript
+<type_value> = border: 4px solid black; padding: 10px;
+<type_value> = text/plain
+<type_value> = ConText
+<type_value> = translate
+<type_value> = cite
+<type_value> = JavaScript 10
+<type_value> = javascript/frame-script
+<type_value> = JavaScript
+<type_value> = 1.0 javascript
+<type_value> = square
+<type_value> = DECIMAL
+<type_value> = text/
+<type_value> = application/x-invalid-type
+<type_value> = application/x-plugin-placeholder-test
+<type_value> = TEXT
+<type_value> = application/x-javascript
+<type_value> = SQUARE
+<type_value> = JavaScript 2
+<type_value> = LOWER-ROMAN
+<type_value> = textfield
+<type_value> = application/x-java-applet
+<type_value> = hidden
+<type_value> = 3D'text/css'
+<type_value> = application/xhtml+xml
+<type_value> = reset
+<type_value> = application/x-blink-deprecated-test-plugin
+<type_value> = none
+<type_value> = text/JavaScript
+<type_value> = image/jp2
+<type_value> = image/gif image/png
+<type_value> = Text
+<type_value> = JavaScript1
+<type_value> = video/ogg
+<type_value> = SUBMIT
+<type_value> = image\gif
+<type_value> = video/mpeg
+<type_value> = RADIO
+<type_value> = text/css
+<type_value> = application/javascript1.2
+<type_value> = image/gif 
+<type_value> = application/x-blink-test-plugin
+<type_value> = image/jpeg
+<type_value> = jscript
+<type_value> = video/mp4; codecs='avc1.4D400C'
+<type_value> = telephone
+<type_value> = Submit
+<type_value> = LOWER-ALPHA
+<type_value> = jscript 1.0
+<type_value> = DISC
+<type_value> = file
+<type_value> = image/gif;
+<type_value> = application/x-no-such-plugin
+<type_value> = */*
+<type_value> = x-shader/x-fragment
+<type_value> = data:text/html
+<type_value> = DISK
+<type_value> = application/x-xstandard
+<type_value> = text/html; charset=utf-8
+<type_value> = IMAGE
+<type_value> = ecmascript
+<type_value> = invalid
+<type_value> = html
+<type_value> = application/x-webkit-test-webplugin
+<type_value> = video/x-higglety-pigglety
+<type_value> = test
+<type_value> = text/invalid
+<type_value> = text/javascript;charset=UTF-8
+<type_value> = application/x-livescript
+<type_value> = week
+<type_value> = JavaScript 1.8
+<type_value> = JavaScript 1.9
+<type_value> = livescript
+<type_value> = JavaScript 1.6
+<type_value> = JavaScript 1.7
+<type_value> = application/livescript
+<type_value> = JavaScript 1.1
+<type_value> = 3D'cite'
+<type_value> = lower-alpha
+<type_value> = application/nonexistent
+<type_value> = isolated/world
+<type_value> = Application/x-webkit-test-webplugin
+<type_value> = JavaScript1.6
+<type_value> = date
+<type_value> = data
+<type_value> = identity
+<type_value> = text/worklet
+<type_value> = JavaScript1.4
+<type_value> = url
+<type_value> = text/jscript
+<type_value> = UPPER-ALPHA
+<type_value> = application/x-javascript1.2
+<type_value> = video/ogg; codecs='theora,vorbis'
+<type_value> = image/bar
+<type_value> = image/gif, image/png
+<type_value> = block
+<type_value> = time
+<type_value> = JavaScript 1
+<type_value> = application/ecmascript
+
+<usemap_value> = <hash><elementid>
+
+<valign_value> = middle
+<valign_value> = top
+<valign_value> = bottom
+<valign_value> = baseline
+<valign_value> = center
+
+<value_value> = <attributestring>
+
+<valuetype_value> = ref
+
+<version_value> = 1
+<version_value> = -//W3C//DTD HTML 4.01 Transitional//EN
+<version_value> = 1.0
+<version_value> = 1.1
+
+<vlink_value> = <color>
+
+<vspace_value> = <fuzzint>
+
+<width_value> = <fuzzint>
+
+<wrap_value> = soft
+<wrap_value> = hard
+<wrap_value> = off
+
+<direction_value> = <attributestring>
+<text_value> = <attributestring>
+<fgColor_value> = <attributestring>
+<frameBorder_value> = <attributestring>
+<compact_value> = <boolean>
+<src_value> = <attributestring>
+<defaultSelected_value> = <boolean>
+<target_value> = <attributestring>
+<outerText_value> = <attributestring>
+<shape_value> = <attributestring>
+<archive_value> = <attributestring>
+<enctype_value> = <attributestring>
+<color_value> = <attributestring>
+<width_value> = <attributestring>
+<cols_value> = <attributestring>
+<capture_value> = <attributestring>
+<formEnctype_value> = <attributestring>
+<declare_value> = <boolean>
+<min_value> = <attributestring>
+<rev_value> = <attributestring>
+<optimum_value> = <float>
+<csp_value> = <attributestring>
+<bgColor_value> = <attributestring>
+<noModule_value> = <boolean>
+<border_value> = <attributestring>
+<charset_value> = <attributestring>
+<lowsrc_value> = <attributestring>
+<formTarget_value> = <attributestring>
+<clear_value> = <attributestring>
+<maxLength_value> = <fuzzint>
+<disabled_value> = <boolean>
+<allowFullscreen_value> = <boolean>
+<linkColor_value> = <attributestring>
+<link_value> = <attributestring>
+<frame_value> = <attributestring>
+<action_value> = <attributestring>
+<formAction_value> = <attributestring>
+<value_value> = <fuzzint>
+<sizes_value> = <attributestring>
+<height_value> = <fuzzint>
+<decoding_value> = <attributestring>
+<low_value> = <float>
+<draggable_value> = <boolean>
+<playsInline_value> = <boolean>
+<loop_value> = <boolean>
+<method_value> = <attributestring>
+<search_value> = <attributestring>
+<hreflang_value> = <attributestring>
+<codeBase_value> = <attributestring>
+<marginHeight_value> = <attributestring>
+<formMethod_value> = <attributestring>
+<max_value> = <attributestring>
+<step_value> = <attributestring>
+<max_value> = <float>
+<pattern_value> = <attributestring>
+<cols_value> = <fuzzint>
+<allow_value> = <attributestring>
+<noWrap_value> = <boolean>
+<trueSpeed_value> = <boolean>
+<alt_value> = <attributestring>
+<formNoValidate_value> = <boolean>
+<code_value> = <attributestring>
+<inert_value> = <boolean>
+<vlinkColor_value> = <attributestring>
+<scheme_value> = <attributestring>
+<longDesc_value> = <attributestring>
+<accept_value> = <attributestring>
+<face_value> = <attributestring>
+<host_value> = <attributestring>
+<nodeValue_value> = <attributestring>
+<outerHTML_value> = <attributestring>
+<dir_value> = <attributestring>
+<innerText_value> = <attributestring>
+<colSpan_value> = <fuzzint>
+<scope_value> = <attributestring>
+<background_value> = <attributestring>
+<value_value> = <attributestring>
+<id_value> = <attributestring>
+<dateTime_value> = <attributestring>
+<useMap_value> = <attributestring>
+<marginWidth_value> = <attributestring>
+<designMode_value> = <attributestring>
+<align_value> = <attributestring>
+<size_value> = <fuzzint>
+<htmlFor_value> = <attributestring>
+<dirName_value> = <attributestring>
+<spellcheck_value> = <boolean>
+<abbr_value> = <attributestring>
+<srcset_value> = <attributestring>
+<span_value> = <fuzzint>
+<placeholder_value> = <attributestring>
+<defaultChecked_value> = <boolean>
+<accessKey_value> = <attributestring>
+<summary_value> = <attributestring>
+<vspace_value> = <fuzzint>
+<srclang_value> = <attributestring>
+<translate_value> = <boolean>
+<className_value> = <attributestring>
+<scrollAmount_value> = <fuzzint>
+<as_value> = <attributestring>
+<preload_value> = <attributestring>
+<cssText_value> = <attributestring>
+<defer_value> = <boolean>
+<password_value> = <attributestring>
+<autoplay_value> = <boolean>
+<noShade_value> = <boolean>
+<hash_value> = <attributestring>
+<cssFloat_value> = <attributestring>
+<headers_value> = <attributestring>
+<cellPadding_value> = <attributestring>
+<aLink_value> = <attributestring>
+<label_value> = <attributestring>
+<multiple_value> = <boolean>
+<version_value> = <attributestring>
+<minLength_value> = <fuzzint>
+<crossOrigin_value> = <attributestring>
+<scrolling_value> = <attributestring>
+<defaultValue_value> = <attributestring>
+<rows_value> = <fuzzint>
+<type_value> = <attributestring>
+<referrerPolicy_value> = <attributestring>
+<open_value> = <boolean>
+<encoding_value> = <attributestring>
+<loop_value> = <fuzzint>
+<hostname_value> = <attributestring>
+<behavior_value> = <attributestring>
+<valueType_value> = <attributestring>
+<autocapitalize_value> = <attributestring>
+<rel_value> = <attributestring>
+<cite_value> = <attributestring>
+<noHref_value> = <boolean>
+<controls_value> = <boolean>
+<data_value> = <attributestring>
+<vAlign_value> = <attributestring>
+<reversed_value> = <boolean>
+<width_value> = <fuzzint>
+<attributionSourceId_value> = <fuzzint>
+<name_value> = <attributestring>
+<chOff_value> = <attributestring>
+<slot_value> = <attributestring>
+<start_value> = <fuzzint>
+<min_value> = <float>
+<poster_value> = <attributestring>
+<height_value> = <attributestring>
+<ping_value> = <attributestring>
+<disableRemotePlayback_value> = <boolean>
+<integrity_value> = <attributestring>
+<pathname_value> = <attributestring>
+<standby_value> = <attributestring>
+<wrap_value> = <attributestring>
+<httpEquiv_value> = <attributestring>
+<readOnly_value> = <boolean>
+<acceptCharset_value> = <attributestring>
+<disablePictureInPicture_value> = <boolean>
+<elementTiming_value> = <attributestring>
+<href_value> = <attributestring>
+<high_value> = <float>
+<length_value> = <fuzzint>
+<autocomplete_value> = <attributestring>
+<required_value> = <boolean>
+<protocol_value> = <attributestring>
+<codeType_value> = <attributestring>
+<defaultMuted_value> = <boolean>
+<srcdoc_value> = <attributestring>
+<fetchPriority_value> = <attributestring>
+<hspace_value> = <fuzzint>
+<textContent_value> = <attributestring>
+<kind_value> = <attributestring>
+<isMap_value> = <boolean>
+<username_value> = <attributestring>
+<title_value> = <attributestring>
+<rowSpan_value> = <fuzzint>
+<alinkColor_value> = <attributestring>
+<content_value> = <attributestring>
+<rules_value> = <attributestring>
+<axis_value> = <attributestring>
+<async_value> = <boolean>
+<ch_value> = <attributestring>
+<noValidate_value> = <boolean>
+<loading_value> = <attributestring>
+<port_value> = <attributestring>
+<noResize_value> = <boolean>
+<vLink_value> = <attributestring>
+<size_value> = <attributestring>
+<media_value> = <attributestring>
+<coords_value> = <attributestring>
+<value_value> = <float>
+<event_value> = <attributestring>
+<cellSpacing_value> = <attributestring>
+<lang_value> = <attributestring>
+<imageSizes_value> = <attributestring>
+<rows_value> = <attributestring>
+<default_value> = <boolean>
+<scrollDelay_value> = <fuzzint>
+<imageSrcset_value> = <attributestring>
+<download_value> = <attributestring>
+
+
+<attribute_defaultPrevented> = defaultPrevented="<defaultPrevented_value>"
+<attribute_selectionEnd> = selectionEnd="<selectionEnd_value>"
+<attribute_sizes> = sizes="<sizes_value>"
+<attribute_illuminance> = illuminance="<illuminance_value>"
+<attribute_playsInline> = playsInline="<playsInline_value>"
+<attribute_animatorName> = animatorName="<animatorName_value>"
+<attribute_method> = method="<method_value>"
+<attribute_rangeStart> = rangeStart="<rangeStart_value>"
+<attribute_attributionSourceId> = attributionSourceId="<attributionSourceId_value>"
+<attribute_transitionProperty> = transitionProperty="<transitionProperty_value>"
+<attribute_oldValue> = oldValue="<oldValue_value>"
+<attribute_postalCode> = postalCode="<postalCode_value>"
+<attribute_multiple> = multiple="<multiple_value>"
+<attribute_naturalWidth> = naturalWidth="<naturalWidth_value>"
+<attribute_value> = value="<value_value>"
+<attribute_inputEncoding> = inputEncoding="<inputEncoding_value>"
+<attribute_nodeValue> = nodeValue="<nodeValue_value>"
+<attribute_offsetTop> = offsetTop="<offsetTop_value>"
+<attribute_length> = length="<length_value>"
+<attribute_orient> = orient="<orient_value>"
+<attribute_screenY> = screenY="<screenY_value>"
+<attribute_blockOffset> = blockOffset="<blockOffset_value>"
+<attribute_innerWidth> = innerWidth="<innerWidth_value>"
+<attribute_updateRangeStart> = updateRangeStart="<updateRangeStart_value>"
+<attribute_srcdoc> = srcdoc="<srcdoc_value>"
+<attribute_isConnected> = isConnected="<isConnected_value>"
+<attribute_sortingCode> = sortingCode="<sortingCode_value>"
+<attribute_blockSize> = blockSize="<blockSize_value>"
+<attribute_scale> = scale="<scale_value>"
+<attribute_style> = style="<style_value>"
+<attribute_readOnly> = readOnly="<readOnly_value>"
+<attribute_bubbles> = bubbles="<bubbles_value>"
+<attribute_initDataType> = initDataType="<initDataType_value>"
+<attribute_hspace> = hspace="<hspace_value>"
+<attribute_inherits> = inherits="<inherits_value>"
+<attribute_rows> = rows="<rows_value>"
+<attribute_formTarget> = formTarget="<formTarget_value>"
+<attribute_maximumValue> = maximumValue="<maximumValue_value>"
+<attribute_weight> = weight="<weight_value>"
+<attribute_dependentLocality> = dependentLocality="<dependentLocality_value>"
+<attribute_clear> = clear="<clear_value>"
+<attribute_scrollAmount> = scrollAmount="<scrollAmount_value>"
+<attribute_renderingIntent> = renderingIntent="<renderingIntent_value>"
+<attribute_imageSizes> = imageSizes="<imageSizes_value>"
+<attribute_slot> = slot="<slot_value>"
+<attribute_offsetY> = offsetY="<offsetY_value>"
+<attribute_preload> = preload="<preload_value>"
+<attribute_inline> = inline="<inline_value>"
+<attribute_prefix> = prefix="<prefix_value>"
+<attribute_data> = data="<data_value>"
+<attribute_axis> = axis="<axis_value>"
+<attribute_hostname> = hostname="<hostname_value>"
+<attribute_y> = y="<y_value>"
+<attribute_longDesc> = longDesc="<longDesc_value>"
+<attribute_screenX> = screenX="<screenX_value>"
+<attribute_pageY> = pageY="<pageY_value>"
+<attribute_display> = display="<display_value>"
+<attribute_token> = token="<token_value>"
+<attribute_textContent> = textContent="<textContent_value>"
+<attribute_kind> = kind="<kind_value>"
+<attribute_abbr> = abbr="<abbr_value>"
+<attribute_formMethod> = formMethod="<formMethod_value>"
+<attribute_disabled> = disabled="<disabled_value>"
+<attribute_nodeName> = nodeName="<nodeName_value>"
+<attribute_origin> = origin="<origin_value>"
+<attribute_characterSet> = characterSet="<characterSet_value>"
+<attribute_url> = url="<url_value>"
+<attribute_conditionText> = conditionText="<conditionText_value>"
+<attribute_frameBorder> = frameBorder="<frameBorder_value>"
+<attribute_host> = host="<host_value>"
+<attribute_marginHeight> = marginHeight="<marginHeight_value>"
+<attribute_charset> = charset="<charset_value>"
+<attribute_z> = z="<z_value>"
+<attribute_cssText> = cssText="<cssText_value>"
+<attribute_loop> = loop="<loop_value>"
+<attribute_propertyName> = propertyName="<propertyName_value>"
+<attribute_originalPolicy> = originalPolicy="<originalPolicy_value>"
+<attribute_violatedDirective> = violatedDirective="<violatedDirective_value>"
+<attribute_scrollHeight> = scrollHeight="<scrollHeight_value>"
+<attribute_skipped> = skipped="<skipped_value>"
+<attribute_basePalette> = basePalette="<basePalette_value>"
+<attribute_imageSrcset> = imageSrcset="<imageSrcset_value>"
+<attribute_draggable> = draggable="<draggable_value>"
+<attribute_isDirectory> = isDirectory="<isDirectory_value>"
+<attribute_compact> = compact="<compact_value>"
+<attribute_disablePictureInPicture> = disablePictureInPicture="<disablePictureInPicture_value>"
+<attribute_capture> = capture="<capture_value>"
+<attribute_vlinkColor> = vlinkColor="<vlinkColor_value>"
+<attribute_defaultSelected> = defaultSelected="<defaultSelected_value>"
+<attribute_width> = width="<width_value>"
+<attribute_layerName> = layerName="<layerName_value>"
+<attribute_maxContentSize> = maxContentSize="<maxContentSize_value>"
+<attribute_specified> = specified="<specified_value>"
+<attribute_ping> = ping="<ping_value>"
+<attribute_offsetLeft> = offsetLeft="<offsetLeft_value>"
+<attribute_headers> = headers="<headers_value>"
+<attribute_speakAs> = speakAs="<speakAs_value>"
+<attribute_offsetX> = offsetX="<offsetX_value>"
+<attribute_src> = src="<src_value>"
+<attribute_autoplay> = autoplay="<autoplay_value>"
+<attribute_startOffset> = startOffset="<startOffset_value>"
+<attribute_span> = span="<span_value>"
+<attribute_colno> = colno="<colno_value>"
+<attribute_pageXOffset> = pageXOffset="<pageXOffset_value>"
+<attribute_pageLeft> = pageLeft="<pageLeft_value>"
+<attribute_baseURI> = baseURI="<baseURI_value>"
+<attribute_lineNumber> = lineNumber="<lineNumber_value>"
+<attribute_noWrap> = noWrap="<noWrap_value>"
+<attribute_webkitdirectory> = webkitdirectory="<webkitdirectory_value>"
+<attribute_composed> = composed="<composed_value>"
+<attribute_minContentSize> = minContentSize="<minContentSize_value>"
+<attribute_defaultMuted> = defaultMuted="<defaultMuted_value>"
+<attribute_httpEquiv> = httpEquiv="<httpEquiv_value>"
+<attribute_usableWithLightBackground> = usableWithLightBackground="<usableWithLightBackground_value>"
+<attribute_violationURL> = violationURL="<violationURL_value>"
+<attribute_start> = start="<start_value>"
+<attribute_id> = id="<id_value>"
+<attribute_fixedBlockSize> = fixedBlockSize="<fixedBlockSize_value>"
+<attribute_pixelDepth> = pixelDepth="<pixelDepth_value>"
+<attribute_rowSpan> = rowSpan="<rowSpan_value>"
+<attribute_trueSpeed> = trueSpeed="<trueSpeed_value>"
+<attribute_city> = city="<city_value>"
+<attribute_variationSettings> = variationSettings="<variationSettings_value>"
+<attribute_country> = country="<country_value>"
+<attribute_dirName> = dirName="<dirName_value>"
+<attribute_compositionRangeEnd> = compositionRangeEnd="<compositionRangeEnd_value>"
+<attribute_height> = height="<height_value>"
+<attribute_integrity> = integrity="<integrity_value>"
+<attribute_isTrusted> = isTrusted="<isTrusted_value>"
+<attribute_codeBase> = codeBase="<codeBase_value>"
+<attribute_csp> = csp="<csp_value>"
+<attribute_hreflang> = hreflang="<hreflang_value>"
+<attribute_pathname> = pathname="<pathname_value>"
+<attribute_disableRemotePlayback> = disableRemotePlayback="<disableRemotePlayback_value>"
+<attribute_elapsedTime> = elapsedTime="<elapsedTime_value>"
+<attribute_cols> = cols="<cols_value>"
+<attribute_behavior> = behavior="<behavior_value>"
+<attribute_rules> = rules="<rules_value>"
+<attribute_formAction> = formAction="<formAction_value>"
+<attribute_chOff> = chOff="<chOff_value>"
+<attribute_outerHeight> = outerHeight="<outerHeight_value>"
+<attribute_translate> = translate="<translate_value>"
+<attribute_recordsAvailable> = recordsAvailable="<recordsAvailable_value>"
+<attribute_useMap> = useMap="<useMap_value>"
+<attribute_localName> = localName="<localName_value>"
+<attribute_documentURI> = documentURI="<documentURI_value>"
+<attribute_summary> = summary="<summary_value>"
+<attribute_lineno> = lineno="<lineno_value>"
+<attribute_initialValue> = initialValue="<initialValue_value>"
+<attribute_systemId> = systemId="<systemId_value>"
+<attribute_inert> = inert="<inert_value>"
+<attribute_rangeEnd> = rangeEnd="<rangeEnd_value>"
+<attribute_autocomplete> = autocomplete="<autocomplete_value>"
+<attribute_inlineEnd> = inlineEnd="<inlineEnd_value>"
+<attribute_code> = code="<code_value>"
+<attribute_vLink> = vLink="<vLink_value>"
+<attribute_autocapitalize> = autocapitalize="<autocapitalize_value>"
+<attribute_wholeText> = wholeText="<wholeText_value>"
+<attribute_booleanValue> = booleanValue="<booleanValue_value>"
+<attribute_snapshotLength> = snapshotLength="<snapshotLength_value>"
+<attribute_valueAsString> = valueAsString="<valueAsString_value>"
+<attribute_cite> = cite="<cite_value>"
+<attribute_enctype> = enctype="<enctype_value>"
+<attribute_rel> = rel="<rel_value>"
+<attribute_lowerOpen> = lowerOpen="<lowerOpen_value>"
+<attribute_cssFloat> = cssFloat="<cssFloat_value>"
+<attribute_noResize> = noResize="<noResize_value>"
+<attribute_animationName> = animationName="<animationName_value>"
+<attribute_offsetHeight> = offsetHeight="<offsetHeight_value>"
+<attribute_crossOrigin> = crossOrigin="<crossOrigin_value>"
+<attribute_naturalHeight> = naturalHeight="<naturalHeight_value>"
+<attribute_formNoValidate> = formNoValidate="<formNoValidate_value>"
+<attribute_scrollX> = scrollX="<scrollX_value>"
+<attribute_inlineOffset> = inlineOffset="<inlineOffset_value>"
+<attribute_noModule> = noModule="<noModule_value>"
+<attribute_outerWidth> = outerWidth="<outerWidth_value>"
+<attribute_webkitRelativePath> = webkitRelativePath="<webkitRelativePath_value>"
+<attribute_blockStart> = blockStart="<blockStart_value>"
+<attribute_required> = required="<required_value>"
+<attribute_valueType> = valueType="<valueType_value>"
+<attribute_color> = color="<color_value>"
+<attribute_selectorText> = selectorText="<selectorText_value>"
+<attribute_variant> = variant="<variant_value>"
+<attribute_fullPath> = fullPath="<fullPath_value>"
+<attribute_noShade> = noShade="<noShade_value>"
+<attribute_pseudoElement> = pseudoElement="<pseudoElement_value>"
+<attribute_aborted> = aborted="<aborted_value>"
+<attribute_unique> = unique="<unique_value>"
+<attribute_isMap> = isMap="<isMap_value>"
+<attribute_declare> = declare="<declare_value>"
+<attribute_step> = step="<step_value>"
+<attribute_lineGapOverride> = lineGapOverride="<lineGapOverride_value>"
+<attribute_link> = link="<link_value>"
+<attribute_colSpan> = colSpan="<colSpan_value>"
+<attribute_href> = href="<href_value>"
+<attribute_minLength> = minLength="<minLength_value>"
+<attribute_featureSettings> = featureSettings="<featureSettings_value>"
+<attribute_defaultChecked> = defaultChecked="<defaultChecked_value>"
+<attribute_align> = align="<align_value>"
+<attribute_sessionId> = sessionId="<sessionId_value>"
+<attribute_target> = target="<target_value>"
+<attribute_accessKey> = accessKey="<accessKey_value>"
+<attribute_port> = port="<port_value>"
+<attribute_upperOpen> = upperOpen="<upperOpen_value>"
+<attribute_columnNumber> = columnNumber="<columnNumber_value>"
+<attribute_inlineSize> = inlineSize="<inlineSize_value>"
+<attribute_blockEnd> = blockEnd="<blockEnd_value>"
+<attribute_collapsed> = collapsed="<collapsed_value>"
+<attribute_linkColor> = linkColor="<linkColor_value>"
+<attribute_outerText> = outerText="<outerText_value>"
+<attribute_scheme> = scheme="<scheme_value>"
+<attribute_availHeight> = availHeight="<availHeight_value>"
+<attribute_ch> = ch="<ch_value>"
+<attribute_invalidIteratorState> = invalidIteratorState="<invalidIteratorState_value>"
+<attribute_designMode> = designMode="<designMode_value>"
+<attribute_attributeNamespace> = attributeNamespace="<attributeNamespace_value>"
+<attribute_devicePixelRatio> = devicePixelRatio="<devicePixelRatio_value>"
+<attribute_search> = search="<search_value>"
+<attribute_shape> = shape="<shape_value>"
+<attribute_offsetWidth> = offsetWidth="<offsetWidth_value>"
+<attribute_username> = username="<username_value>"
+<attribute_containerName> = containerName="<containerName_value>"
+<attribute_type> = type="<type_value>"
+<attribute_decoding> = decoding="<decoding_value>"
+<attribute_media> = media="<media_value>"
+<attribute_unicodeRange> = unicodeRange="<unicodeRange_value>"
+<attribute_fixedInlineSize> = fixedInlineSize="<fixedInlineSize_value>"
+<attribute_download> = download="<download_value>"
+<attribute_allow> = allow="<allow_value>"
+<attribute_compositionEnd> = compositionEnd="<compositionEnd_value>"
+<attribute_suffix> = suffix="<suffix_value>"
+<attribute_matches> = matches="<matches_value>"
+<attribute_priority> = priority="<priority_value>"
+<attribute_namespaceURI> = namespaceURI="<namespaceURI_value>"
+<attribute_elementTiming> = elementTiming="<elementTiming_value>"
+<attribute_noHref> = noHref="<noHref_value>"
+<attribute_pad> = pad="<pad_value>"
+<attribute_cellSpacing> = cellSpacing="<cellSpacing_value>"
+<attribute_min> = min="<min_value>"
+<attribute_stringValue> = stringValue="<stringValue_value>"
+<attribute_availableInlineSize> = availableInlineSize="<availableInlineSize_value>"
+<attribute_alinkColor> = alinkColor="<alinkColor_value>"
+<attribute_block> = block="<block_value>"
+<attribute_event> = event="<event_value>"
+<attribute_availWidth> = availWidth="<availWidth_value>"
+<attribute_protocol> = protocol="<protocol_value>"
+<attribute_wrap> = wrap="<wrap_value>"
+<attribute_variable> = variable="<variable_value>"
+<attribute_cellPadding> = cellPadding="<cellPadding_value>"
+<attribute_htmlFor> = htmlFor="<htmlFor_value>"
+<attribute_async> = async="<async_value>"
+<attribute_overrideColors> = overrideColors="<overrideColors_value>"
+<attribute_pageX> = pageX="<pageX_value>"
+<attribute_contentType> = contentType="<contentType_value>"
+<attribute_negative> = negative="<negative_value>"
+<attribute_screenLeft> = screenLeft="<screenLeft_value>"
+<attribute_keySystem> = keySystem="<keySystem_value>"
+<attribute_selectionStart> = selectionStart="<selectionStart_value>"
+<attribute_recipient> = recipient="<recipient_value>"
+<attribute_effectiveDirective> = effectiveDirective="<effectiveDirective_value>"
+<attribute_placeholder> = placeholder="<placeholder_value>"
+<attribute_background> = background="<background_value>"
+<attribute_sample> = sample="<sample_value>"
+<attribute_poster> = poster="<poster_value>"
+<attribute_fontFamily> = fontFamily="<fontFamily_value>"
+<attribute_fgColor> = fgColor="<fgColor_value>"
+<attribute_defer> = defer="<defer_value>"
+<attribute_border> = border="<border_value>"
+<attribute_documentURL> = documentURL="<documentURL_value>"
+<attribute_family> = family="<family_value>"
+<attribute_fallback> = fallback="<fallback_value>"
+<attribute_multiEntry> = multiEntry="<multiEntry_value>"
+<attribute_hash> = hash="<hash_value>"
+<attribute_password> = password="<password_value>"
+<attribute_minimumValue> = minimumValue="<minimumValue_value>"
+<attribute_mediaText> = mediaText="<mediaText_value>"
+<attribute_name> = name="<name_value>"
+<attribute_returnValue> = returnValue="<returnValue_value>"
+<attribute_size> = size="<size_value>"
+<attribute_inlineStart> = inlineStart="<inlineStart_value>"
+<attribute_is2D> = is2D="<is2D_value>"
+<attribute_identifier> = identifier="<identifier_value>"
+<attribute_autoIncrement> = autoIncrement="<autoIncrement_value>"
+<attribute_referrer> = referrer="<referrer_value>"
+<attribute_symbols> = symbols="<symbols_value>"
+<attribute_defaultValue> = defaultValue="<defaultValue_value>"
+<attribute_scope> = scope="<scope_value>"
+<attribute_lowsrc> = lowsrc="<lowsrc_value>"
+<attribute_underlineThickness> = underlineThickness="<underlineThickness_value>"
+<attribute_system> = system="<system_value>"
+<attribute_colorDepth> = colorDepth="<colorDepth_value>"
+<attribute_referrerPolicy> = referrerPolicy="<referrerPolicy_value>"
+<attribute_noValidate> = noValidate="<noValidate_value>"
+<attribute_components> = components="<components_value>"
+<attribute_rev> = rev="<rev_value>"
+<attribute_formEnctype> = formEnctype="<formEnctype_value>"
+<attribute_reason> = reason="<reason_value>"
+<attribute_dir> = dir="<dir_value>"
+<attribute_encoding> = encoding="<encoding_value>"
+<attribute_stretch> = stretch="<stretch_value>"
+<attribute_codeType> = codeType="<codeType_value>"
+<attribute_srcset> = srcset="<srcset_value>"
+<attribute_innerHeight> = innerHeight="<innerHeight_value>"
+<attribute_baseVal> = baseVal="<baseVal_value>"
+<attribute_content> = content="<content_value>"
+<attribute_range> = range="<range_value>"
+<attribute_standby> = standby="<standby_value>"
+<attribute_containerQuery> = containerQuery="<containerQuery_value>"
+<attribute_vAlign> = vAlign="<vAlign_value>"
+<attribute_percentageBlockSize> = percentageBlockSize="<percentageBlockSize_value>"
+<attribute_label> = label="<label_value>"
+<attribute_pattern> = pattern="<pattern_value>"
+<attribute_action> = action="<action_value>"
+<attribute_violationType> = violationType="<violationType_value>"
+<attribute_bgColor> = bgColor="<bgColor_value>"
+<attribute_overset> = overset="<overset_value>"
+<attribute_text> = text="<text_value>"
+<attribute_title> = title="<title_value>"
+<attribute_reversed> = reversed="<reversed_value>"
+<attribute_as> = as="<as_value>"
+<attribute_organization> = organization="<organization_value>"
+<attribute_descentOverride> = descentOverride="<descentOverride_value>"
+<attribute_max> = max="<max_value>"
+<attribute_keyText> = keyText="<keyText_value>"
+<attribute_allowFullscreen> = allowFullscreen="<allowFullscreen_value>"
+<attribute_publicId> = publicId="<publicId_value>"
+<attribute_region> = region="<region_value>"
+<attribute_ascentOverride> = ascentOverride="<ascentOverride_value>"
+<attribute_low> = low="<low_value>"
+<attribute_additiveSymbols> = additiveSymbols="<additiveSymbols_value>"
+<attribute_delegatesFocus> = delegatesFocus="<delegatesFocus_value>"
+<attribute_sinkId> = sinkId="<sinkId_value>"
+<attribute_axisTag> = axisTag="<axisTag_value>"
+<attribute_percentageInlineSize> = percentageInlineSize="<percentageInlineSize_value>"
+<attribute_lang> = lang="<lang_value>"
+<attribute_usableWithDarkBackground> = usableWithDarkBackground="<usableWithDarkBackground_value>"
+<attribute_direction> = direction="<direction_value>"
+<attribute_extractable> = extractable="<extractable_value>"
+<attribute_clientHeight> = clientHeight="<clientHeight_value>"
+<attribute_provider> = provider="<provider_value>"
+<attribute_blockedURL> = blockedURL="<blockedURL_value>"
+<attribute_underlineStyle> = underlineStyle="<underlineStyle_value>"
+<attribute_scrollWidth> = scrollWidth="<scrollWidth_value>"
+<attribute_default> = default="<default_value>"
+<attribute_fetchPriority> = fetchPriority="<fetchPriority_value>"
+<attribute_compatMode> = compatMode="<compatMode_value>"
+<attribute_aLink> = aLink="<aLink_value>"
+<attribute_endOffset> = endOffset="<endOffset_value>"
+<attribute_dateTime> = dateTime="<dateTime_value>"
+<attribute_isFile> = isFile="<isFile_value>"
+<attribute_pageTop> = pageTop="<pageTop_value>"
+<attribute_version> = version="<version_value>"
+<attribute_unit> = unit="<unit_value>"
+<attribute_sourceFile> = sourceFile="<sourceFile_value>"
+<attribute_URL> = URL="<URL_value>"
+<attribute_isInComposition> = isInComposition="<isInComposition_value>"
+<attribute_updateRangeEnd> = updateRangeEnd="<updateRangeEnd_value>"
+<attribute_availableBlockSize> = availableBlockSize="<availableBlockSize_value>"
+<attribute_localTime> = localTime="<localTime_value>"
+<attribute_violationSample> = violationSample="<violationSample_value>"
+<attribute_offset> = offset="<offset_value>"
+<attribute_syntax> = syntax="<syntax_value>"
+<attribute_pointerBeforeReferenceNode> = pointerBeforeReferenceNode="<pointerBeforeReferenceNode_value>"
+<attribute_compositionStart> = compositionStart="<compositionStart_value>"
+<attribute_message> = message="<message_value>"
+<attribute_marginWidth> = marginWidth="<marginWidth_value>"
+<attribute_characterBoundsRangeStart> = characterBoundsRangeStart="<characterBoundsRangeStart_value>"
+<attribute_numberOfItems> = numberOfItems="<numberOfItems_value>"
+<attribute_cancelBubble> = cancelBubble="<cancelBubble_value>"
+<attribute_clientLeft> = clientLeft="<clientLeft_value>"
+<attribute_face> = face="<face_value>"
+<attribute_clientTop> = clientTop="<clientTop_value>"
+<attribute_controls> = controls="<controls_value>"
+<attribute_high> = high="<high_value>"
+<attribute_underlineColor> = underlineColor="<underlineColor_value>"
+<attribute_className> = className="<className_value>"
+<attribute_blockFragmentationOffset> = blockFragmentationOffset="<blockFragmentationOffset_value>"
+<attribute_cancelable> = cancelable="<cancelable_value>"
+<attribute_outerHTML> = outerHTML="<outerHTML_value>"
+<attribute_srclang> = srclang="<srclang_value>"
+<attribute_coords> = coords="<coords_value>"
+<attribute_scrollY> = scrollY="<scrollY_value>"
+<attribute_open> = open="<open_value>"
+<attribute_attributeName> = attributeName="<attributeName_value>"
+<attribute_alt> = alt="<alt_value>"
+<attribute_spellcheck> = spellcheck="<spellcheck_value>"
+<attribute_clientWidth> = clientWidth="<clientWidth_value>"
+<attribute_accept> = accept="<accept_value>"
+<attribute_maxLength> = maxLength="<maxLength_value>"
+<attribute_optimum> = optimum="<optimum_value>"
+<attribute_vspace> = vspace="<vspace_value>"
+<attribute_animVal> = animVal="<animVal_value>"
+<attribute_phone> = phone="<phone_value>"
+<attribute_tag> = tag="<tag_value>"
+<attribute_frame> = frame="<frame_value>"
+<attribute_backgroundColor> = backgroundColor="<backgroundColor_value>"
+<attribute_screenTop> = screenTop="<screenTop_value>"
+<attribute_loading> = loading="<loading_value>"
+<attribute_innerText> = innerText="<innerText_value>"
+<attribute_scrollDelay> = scrollDelay="<scrollDelay_value>"
+<attribute_level> = level="<level_value>"
+<attribute_charging> = charging="<charging_value>"
+<attribute_archive> = archive="<archive_value>"
+<attribute_tagName> = tagName="<tagName_value>"
+<attribute_pageYOffset> = pageYOffset="<pageYOffset_value>"
+<attribute_whatToShow> = whatToShow="<whatToShow_value>"
+<attribute_x> = x="<x_value>"
+<attribute_scrolling> = scrolling="<scrolling_value>"
+<attribute_acceptCharset> = acceptCharset="<acceptCharset_value>"
+<attribute_lastChance> = lastChance="<lastChance_value>"
+<attribute_textColor> = textColor="<textColor_value>"
+<attribute_compositionRangeStart> = compositionRangeStart="<compositionRangeStart_value>"
+<attribute_blockedURI> = blockedURI="<blockedURI_value>"
+attribute values:
+<matches_value> = <boolean>
+<block_value> = <float>
+<oldValue_value> = <attributestring>
+<inlineStart_value> = <float>
+<formAction_value> = <attributestring>
+<blockedURL_value> = <attributestring>
+<isInComposition_value> = <boolean>
+<animationName_value> = <attributestring>
+<compositionRangeEnd_value> = <fuzzint>
+<max_value> = <float>
+<origin_value> = <attributestring>
+<slot_value> = <attributestring>
+<color_value> = <attributestring>
+<outerWidth_value> = <fuzzint>
+<max_value> = <attributestring>
+<attributionSourceId_value> = <fuzzint>
+<animVal_value> = <fuzzint>
+<availableInlineSize_value> = <float>
+<isConnected_value> = <boolean>
+<srcset_value> = <attributestring>
+<delegatesFocus_value> = <boolean>
+<dir_value> = <attributestring>
+<y_value> = <fuzzint>
+<height_value> = <float>
+<fgColor_value> = <attributestring>
+<aLink_value> = <attributestring>
+<decoding_value> = <attributestring>
+<variationSettings_value> = <attributestring>
+<sizes_value> = <attributestring>
+<inline_value> = <float>
+<coords_value> = <attributestring>
+<offsetLeft_value> = <float>
+<charging_value> = <boolean>
+<baseVal_value> = <boolean>
+<characterSet_value> = <attributestring>
+<unit_value> = <attributestring>
+<className_value> = <attributestring>
+<cancelable_value> = <boolean>
+<inputEncoding_value> = <attributestring>
+<returnValue_value> = <boolean>
+<underlineStyle_value> = <attributestring>
+<crossOrigin_value> = <attributestring>
+<violationURL_value> = <attributestring>
+<webkitRelativePath_value> = <attributestring>
+<x_value> = <fuzzint>
+<orient_value> = <attributestring>
+<dirName_value> = <attributestring>
+<summary_value> = <attributestring>
+<variable_value> = <attributestring>
+<value_value> = <attributestring>
+<min_value> = <float>
+<scrollAmount_value> = <fuzzint>
+<violationType_value> = <attributestring>
+<reversed_value> = <boolean>
+<offsetY_value> = <float>
+<hreflang_value> = <attributestring>
+<span_value> = <fuzzint>
+<enctype_value> = <attributestring>
+<underlineThickness_value> = <attributestring>
+<initDataType_value> = <attributestring>
+<outerText_value> = <attributestring>
+<fallback_value> = <attributestring>
+<scrollWidth_value> = <fuzzint>
+<pad_value> = <attributestring>
+<backgroundColor_value> = <attributestring>
+<animVal_value> = <boolean>
+<syntax_value> = <attributestring>
+<multiple_value> = <boolean>
+<extractable_value> = <boolean>
+<compositionRangeStart_value> = <fuzzint>
+<renderingIntent_value> = <attributestring>
+<percentageBlockSize_value> = <float>
+<provider_value> = <attributestring>
+<bubbles_value> = <boolean>
+<sample_value> = <attributestring>
+<collapsed_value> = <boolean>
+<inherits_value> = <boolean>
+<marginWidth_value> = <attributestring>
+<label_value> = <attributestring>
+<compact_value> = <boolean>
+<autoplay_value> = <boolean>
+<open_value> = <boolean>
+<codeBase_value> = <attributestring>
+<violationSample_value> = <attributestring>
+<srclang_value> = <attributestring>
+<rangeEnd_value> = <fuzzint>
+<valueAsString_value> = <attributestring>
+<baseVal_value> = <fuzzint>
+<phone_value> = <attributestring>
+<integrity_value> = <attributestring>
+<autoIncrement_value> = <boolean>
+<defaultChecked_value> = <boolean>
+<speakAs_value> = <attributestring>
+<pathname_value> = <attributestring>
+<region_value> = <attributestring>
+<originalPolicy_value> = <attributestring>
+<rowSpan_value> = <fuzzint>
+<disablePictureInPicture_value> = <boolean>
+<defaultSelected_value> = <boolean>
+<innerHeight_value> = <fuzzint>
+<pageX_value> = <float>
+<scrollY_value> = <float>
+<title_value> = <attributestring>
+<minLength_value> = <fuzzint>
+<lang_value> = <attributestring>
+<codeType_value> = <attributestring>
+<columnNumber_value> = <fuzzint>
+<aborted_value> = <boolean>
+<pixelDepth_value> = <fuzzint>
+<overrideColors_value> = <attributestring>
+<availableBlockSize_value> = <float>
+<family_value> = <attributestring>
+<step_value> = <attributestring>
+<clientLeft_value> = <fuzzint>
+<version_value> = <attributestring>
+<inert_value> = <boolean>
+<minimumValue_value> = <float>
+<compatMode_value> = <attributestring>
+<optimum_value> = <float>
+<whatToShow_value> = <fuzzint>
+<low_value> = <float>
+<fixedBlockSize_value> = <float>
+<content_value> = <attributestring>
+<noResize_value> = <boolean>
+<cssText_value> = <attributestring>
+<sourceFile_value> = <attributestring>
+<lineNumber_value> = <fuzzint>
+<alinkColor_value> = <attributestring>
+<animVal_value> = <attributestring>
+<weight_value> = <attributestring>
+<shape_value> = <attributestring>
+<async_value> = <boolean>
+<capture_value> = <attributestring>
+<noValidate_value> = <boolean>
+<clientWidth_value> = <fuzzint>
+<elapsedTime_value> = <float>
+<outerHeight_value> = <fuzzint>
+<message_value> = <attributestring>
+<x_value> = <float>
+<minContentSize_value> = <float>
+<booleanValue_value> = <boolean>
+<referrerPolicy_value> = <attributestring>
+<skipped_value> = <boolean>
+<isDirectory_value> = <boolean>
+<noHref_value> = <boolean>
+<scheme_value> = <attributestring>
+<postalCode_value> = <attributestring>
+<href_value> = <attributestring>
+<dateTime_value> = <attributestring>
+<standby_value> = <attributestring>
+<namespaceURI_value> = <attributestring>
+<naturalWidth_value> = <fuzzint>
+<vlinkColor_value> = <attributestring>
+<lowsrc_value> = <attributestring>
+<ping_value> = <attributestring>
+<cancelBubble_value> = <boolean>
+<maxContentSize_value> = <float>
+<effectiveDirective_value> = <attributestring>
+<pointerBeforeReferenceNode_value> = <boolean>
+<cite_value> = <attributestring>
+<offsetLeft_value> = <fuzzint>
+<rel_value> = <attributestring>
+<prefix_value> = <attributestring>
+<offsetX_value> = <float>
+<chOff_value> = <attributestring>
+<nodeValue_value> = <attributestring>
+<keyText_value> = <attributestring>
+<abbr_value> = <attributestring>
+<illuminance_value> = <float>
+<defaultValue_value> = <float>
+<blockFragmentationOffset_value> = <float>
+<blockOffset_value> = <float>
+<URL_value> = <attributestring>
+<mediaText_value> = <attributestring>
+<rev_value> = <attributestring>
+<pageXOffset_value> = <float>
+<documentURI_value> = <attributestring>
+<display_value> = <attributestring>
+<pseudoElement_value> = <attributestring>
+<accessKey_value> = <attributestring>
+<initialValue_value> = <attributestring>
+<bgColor_value> = <attributestring>
+<code_value> = <attributestring>
+<ch_value> = <attributestring>
+<suffix_value> = <attributestring>
+<wrap_value> = <attributestring>
+<country_value> = <attributestring>
+<fullPath_value> = <attributestring>
+<formEnctype_value> = <attributestring>
+<colSpan_value> = <fuzzint>
+<designMode_value> = <attributestring>
+<headers_value> = <attributestring>
+<tagName_value> = <attributestring>
+<background_value> = <attributestring>
+<symbols_value> = <attributestring>
+<tag_value> = <attributestring>
+<sessionId_value> = <attributestring>
+<accept_value> = <attributestring>
+<linkColor_value> = <attributestring>
+<level_value> = <float>
+<host_value> = <attributestring>
+<poster_value> = <attributestring>
+<longDesc_value> = <attributestring>
+<screenX_value> = <fuzzint>
+<reason_value> = <attributestring>
+<screenLeft_value> = <fuzzint>
+<isFile_value> = <boolean>
+<spellcheck_value> = <boolean>
+<sinkId_value> = <attributestring>
+<lastChance_value> = <boolean>
+<type_value> = <attributestring>
+<numberOfItems_value> = <fuzzint>
+<marginHeight_value> = <attributestring>
+<elementTiming_value> = <attributestring>
+<length_value> = <fuzzint>
+<stringValue_value> = <attributestring>
+<defer_value> = <boolean>
+<maxLength_value> = <fuzzint>
+<y_value> = <float>
+<scrollX_value> = <float>
+<containerQuery_value> = <attributestring>
+<recordsAvailable_value> = <boolean>
+<startOffset_value> = <fuzzint>
+<axis_value> = <attributestring>
+<cellPadding_value> = <attributestring>
+<attributeName_value> = <attributestring>
+<organization_value> = <attributestring>
+<system_value> = <attributestring>
+<inlineOffset_value> = <float>
+<token_value> = <attributestring>
+<characterBoundsRangeStart_value> = <fuzzint>
+<descentOverride_value> = <attributestring>
+<innerWidth_value> = <fuzzint>
+<systemId_value> = <attributestring>
+<scrollDelay_value> = <fuzzint>
+<colno_value> = <fuzzint>
+<underlineColor_value> = <attributestring>
+<cols_value> = <fuzzint>
+<username_value> = <attributestring>
+<link_value> = <attributestring>
+<rows_value> = <attributestring>
+<isTrusted_value> = <boolean>
+<snapshotLength_value> = <fuzzint>
+<featureSettings_value> = <attributestring>
+<autocapitalize_value> = <attributestring>
+<vAlign_value> = <attributestring>
+<keySystem_value> = <attributestring>
+<offsetTop_value> = <fuzzint>
+<controls_value> = <boolean>
+<fixedInlineSize_value> = <float>
+<encoding_value> = <attributestring>
+<placeholder_value> = <attributestring>
+<percentageInlineSize_value> = <float>
+<selectionStart_value> = <fuzzint>
+<availHeight_value> = <fuzzint>
+<unique_value> = <boolean>
+<src_value> = <attributestring>
+<scale_value> = <float>
+<violatedDirective_value> = <attributestring>
+<scrolling_value> = <attributestring>
+<publicId_value> = <attributestring>
+<media_value> = <attributestring>
+<endOffset_value> = <fuzzint>
+<action_value> = <attributestring>
+<fetchPriority_value> = <attributestring>
+<defaultPrevented_value> = <boolean>
+<selectionEnd_value> = <fuzzint>
+<clear_value> = <attributestring>
+<lowerOpen_value> = <boolean>
+<hostname_value> = <attributestring>
+<updateRangeEnd_value> = <fuzzint>
+<srcdoc_value> = <attributestring>
+<animatorName_value> = <attributestring>
+<propertyName_value> = <attributestring>
+<loop_value> = <boolean>
+<axisTag_value> = <attributestring>
+<default_value> = <boolean>
+<blockStart_value> = <float>
+<frame_value> = <attributestring>
+<baseURI_value> = <attributestring>
+<preload_value> = <attributestring>
+<autocomplete_value> = <attributestring>
+<defaultValue_value> = <attributestring>
+<rangeStart_value> = <fuzzint>
+<httpEquiv_value> = <attributestring>
+<textColor_value> = <attributestring>
+<width_value> = <fuzzint>
+<availWidth_value> = <fuzzint>
+<kind_value> = <attributestring>
+<blockedURI_value> = <attributestring>
+<readOnly_value> = <boolean>
+<declare_value> = <boolean>
+<additiveSymbols_value> = <attributestring>
+<archive_value> = <attributestring>
+<screenTop_value> = <fuzzint>
+<colorDepth_value> = <fuzzint>
+<dependentLocality_value> = <attributestring>
+<high_value> = <float>
+<align_value> = <attributestring>
+<noShade_value> = <boolean>
+<innerText_value> = <attributestring>
+<vspace_value> = <fuzzint>
+<multiEntry_value> = <boolean>
+<trueSpeed_value> = <boolean>
+<playsInline_value> = <boolean>
+<is2D_value> = <boolean>
+<charset_value> = <attributestring>
+<lineno_value> = <fuzzint>
+<cssFloat_value> = <attributestring>
+<size_value> = <fuzzint>
+<value_value> = <float>
+<protocol_value> = <attributestring>
+<devicePixelRatio_value> = <float>
+<sortingCode_value> = <attributestring>
+<vLink_value> = <attributestring>
+<acceptCharset_value> = <attributestring>
+<method_value> = <attributestring>
+<scrollHeight_value> = <fuzzint>
+<loading_value> = <attributestring>
+<inlineSize_value> = <float>
+<style_value> = <attributestring>
+<pageY_value> = <float>
+<name_value> = <attributestring>
+<translate_value> = <boolean>
+<basePalette_value> = <attributestring>
+<offsetHeight_value> = <fuzzint>
+<value_value> = <fuzzint>
+<imageSrcset_value> = <attributestring>
+<frameBorder_value> = <attributestring>
+<direction_value> = <attributestring>
+<localTime_value> = <float>
+<specified_value> = <boolean>
+<imageSizes_value> = <attributestring>
+<text_value> = <attributestring>
+<upperOpen_value> = <boolean>
+<formTarget_value> = <attributestring>
+<contentType_value> = <attributestring>
+<pageTop_value> = <float>
+<stretch_value> = <attributestring>
+<clientTop_value> = <fuzzint>
+<alt_value> = <attributestring>
+<height_value> = <attributestring>
+<draggable_value> = <boolean>
+<scope_value> = <attributestring>
+<naturalHeight_value> = <fuzzint>
+<port_value> = <attributestring>
+<password_value> = <attributestring>
+<hash_value> = <attributestring>
+<noWrap_value> = <boolean>
+<width_value> = <float>
+<behavior_value> = <attributestring>
+<lineGapOverride_value> = <attributestring>
+<required_value> = <boolean>
+<min_value> = <attributestring>
+<height_value> = <fuzzint>
+<url_value> = <attributestring>
+<clientHeight_value> = <fuzzint>
+<textContent_value> = <attributestring>
+<cols_value> = <attributestring>
+<range_value> = <attributestring>
+<containerName_value> = <attributestring>
+<conditionText_value> = <attributestring>
+<offsetTop_value> = <float>
+<hspace_value> = <fuzzint>
+<unicodeRange_value> = <attributestring>
+<download_value> = <attributestring>
+<identifier_value> = <attributestring>
+<recipient_value> = <attributestring>
+<localName_value> = <attributestring>
+<formNoValidate_value> = <boolean>
+<rules_value> = <attributestring>
+<size_value> = <attributestring>
+<usableWithLightBackground_value> = <boolean>
+<compositionStart_value> = <fuzzint>
+<selectorText_value> = <attributestring>
+<outerHTML_value> = <attributestring>
+<isMap_value> = <boolean>
+<overset_value> = <boolean>
+<fontFamily_value> = <attributestring>
+<pattern_value> = <attributestring>
+<screenY_value> = <fuzzint>
+<start_value> = <fuzzint>
+<baseVal_value> = <attributestring>
+<offsetWidth_value> = <fuzzint>
+<compositionEnd_value> = <fuzzint>
+<transitionProperty_value> = <attributestring>
+<pageLeft_value> = <float>
+<search_value> = <attributestring>
+<event_value> = <attributestring>
+<inlineEnd_value> = <float>
+<htmlFor_value> = <attributestring>
+<priority_value> = <fuzzint>
+<city_value> = <attributestring>
+<wholeText_value> = <attributestring>
+<invalidIteratorState_value> = <boolean>
+<components_value> = <attributestring>
+<noModule_value> = <boolean>
+<target_value> = <attributestring>
+<width_value> = <attributestring>
+<z_value> = <float>
+<disableRemotePlayback_value> = <boolean>
+<data_value> = <attributestring>
+<useMap_value> = <attributestring>
+<referrer_value> = <attributestring>
+<defaultMuted_value> = <boolean>
+<layerName_value> = <attributestring>
+<blockSize_value> = <float>
+<face_value> = <attributestring>
+<negative_value> = <attributestring>
+<usableWithDarkBackground_value> = <boolean>
+<variant_value> = <attributestring>
+<composed_value> = <boolean>
+<id_value> = <attributestring>
+<attributeNamespace_value> = <attributestring>
+<formMethod_value> = <attributestring>
+<pageYOffset_value> = <float>
+<nodeName_value> = <attributestring>
+<allow_value> = <attributestring>
+<maximumValue_value> = <float>
+<updateRangeStart_value> = <fuzzint>
+<offset_value> = <fuzzint>
+<rows_value> = <fuzzint>
+<documentURL_value> = <attributestring>
+<cellSpacing_value> = <attributestring>
+<as_value> = <attributestring>
+<loop_value> = <fuzzint>
+<border_value> = <attributestring>
+<webkitdirectory_value> = <boolean>
+<valueType_value> = <attributestring>
+<csp_value> = <attributestring>
+<allowFullscreen_value> = <boolean>
+<blockEnd_value> = <float>
+<ascentOverride_value> = <attributestring>
+<disabled_value> = <boolean>
