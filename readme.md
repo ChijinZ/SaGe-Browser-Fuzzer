@@ -25,7 +25,7 @@ export RULE_INFO_PATH="$SAGE_PATH/invalid_tree/global_info.pickle"
 
 Next, use ```python main.py --help``` to show how it works.
 
-```shell
+```
 Usage: python main [-options] -o output_dir
 
 Options:
@@ -86,7 +86,7 @@ This tool can adapt to any other browsers that are based on the three browsers. 
 
 ## Publication
 
-The paper which describes the design detail of this browser fuzzer is accepted by OOPSLA 2023 ([doi](https://doi.org/10.1145/3622819)). BibTex Citation is 
+The paper which describes the design detail of this browser fuzzer is accepted by OOPSLA 2023 ([doi](https://doi.org/10.1145/3622819)). BibTeX Citation is 
 
 ```bibtex
 @article{zhou2023towards,
