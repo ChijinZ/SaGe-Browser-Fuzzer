@@ -102,3 +102,7 @@ The paper which describes the design detail of this browser fuzzer is accepted b
 ```
 
 The artifact of this paper is available at [zenodo](https://doi.org/10.5281/zenodo.8328742), which includes a docker environment for reproducing the experitmental results in the paper. The artifact passed the OOPSLA'23 Artifact Evaluation and earned all badges.
+
+## Acknowledgement
+
+We build the fuzzer on the top of [Domato](https://github.com/googleprojectzero/domato) for input generation.
