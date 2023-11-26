@@ -446,9 +446,9 @@ class Generator:
         if browser_grammar is None:
             print("not set BROWSER_GRAMMAR, default webref_js")
         if browser_grammar == "CHROME":
-            err = self.jsgrammar.parse_from_file(os.path.join(self.grammar_dir, 'chromejs.txt'))
+            err = self.jsgrammar.parse_from_file(os.path.join(self.grammar_dir, 'webref_js.txt'))
         elif browser_grammar == "FIREFOX":
-            err = self.jsgrammar.parse_from_file(os.path.join(self.grammar_dir, 'firefoxjs.txt'))
+            err = self.jsgrammar.parse_from_file(os.path.join(self.grammar_dir, 'webref_js.txt'))
         elif browser_grammar == "WEBKIT":
             err = self.jsgrammar.parse_from_file(os.path.join(self.grammar_dir, 'webref_js.txt'))
         elif browser_grammar == "ORIGINAL_DOMATO":
