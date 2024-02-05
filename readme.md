@@ -84,6 +84,21 @@ This tool can adapt to any other browsers that are based on the three browsers. 
 - During fuzzing, suppose we set p=2, this means that we create two (almost) separated browser instances, and each of them creates a new tab for handling one fuzzing input. If a browser crashes, the fuzzer will close it and create a new browser instance for testing.
 - Browsers may crash because of long-term running. For stability, the fuzzer will close an instance with 1% probability. Users can use ``CLOSE_BROWSER_PROB`` to change this setting. For example, ``export CLOSE_BROWSER_PROB=0.05`` will set the probability to 5%.
 
+## Monitor Tool
+EXTRA REQUIRMENTS:
+``lolcat`` - ```sudo apt install lolcat```
+```tmux``` - ```sudo apt install tmux```
+
+- After setting the binary path variables (browser, and webdriver for your target of choice) specified earlier, run ``go.sh --browser`` in one terminal, and ``watcher.sh`` in another.
+
+- eg.
+```export WEBKIT_BINARY_PATH="$WEBKIT_PATH/MiniBrowser"```
+```export WEBKIT_WEBDRIVER_PATH="$WEBKIT_PATH/WebKitWebDriver"```
+```./go.sh --webkit```
+
+![Monitor Setup](monitor.png)
+
+
 ## Publication
 
 The paper which describes the design detail of this browser fuzzer is accepted by OOPSLA 2023 ([doi](https://doi.org/10.1145/3622819)). BibTeX Citation is 
