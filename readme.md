@@ -84,20 +84,40 @@ This tool can adapt to any other browsers that are based on the three browsers. 
 - During fuzzing, suppose we set p=2, this means that we create two (almost) separated browser instances, and each of them creates a new tab for handling one fuzzing input. If a browser crashes, the fuzzer will close it and create a new browser instance for testing.
 - Browsers may crash because of long-term running. For stability, the fuzzer will close an instance with 1% probability. Users can use ``CLOSE_BROWSER_PROB`` to change this setting. For example, ``export CLOSE_BROWSER_PROB=0.05`` will set the probability to 5%.
 
-## Monitor Tool
-EXTRA REQUIRMENTS:
-``lolcat`` - ```sudo apt install lolcat```
-```tmux``` - ```sudo apt install tmux```
+## Monitor Tool Setup Instructions 🖥️👀
 
-- After setting the binary path variables (browser, and webdriver for your target of choice) specified earlier, run ``go.sh --browser`` in one terminal, and ``watcher.sh`` in another.
+### EXTRA REQUIREMENTS 📦
+- `lolcat` 🌈: Install it using the command:
+  ```bash
+  sudo apt install lolcat
+  ```
+- `tmux` 🖥️: Install it using the command:
+  ```bash
+  sudo apt install tmux
+  ```
 
-- eg.
-```export WEBKIT_BINARY_PATH="$WEBKIT_PATH/MiniBrowser"```
-```export WEBKIT_WEBDRIVER_PATH="$WEBKIT_PATH/WebKitWebDriver"```
-```./go.sh --webkit```
+### Setup Steps 🛠️
+1. **Set Binary Path Variables** 🔧
+   - Set up the binary path for the browser and webdriver. For example:
+     ```bash
+     export WEBKIT_BINARY_PATH="$WEBKIT_PATH/MiniBrowser"
+     export WEBKIT_WEBDRIVER_PATH="$WEBKIT_PATH/WebKitWebDriver"
+     ```
 
-![Monitor Setup](monitor.png)
+2. **Run Scripts** 🚀
+   - Open two terminals.
+   - In the first terminal, run the `go.sh` script with the browser option:
+     ```bash
+     ./go.sh --webkit
+     ```
+   - In the second terminal, run the `watcher.sh` script:
+     ```bash
+     ./watcher.sh
+     ```
 
+### Monitor Setup Image 🖼️
+- Here's how your awesome monitor setup looks like (resized for better fit):
+  ![Monitor Setup](monitor.png){:height="50%" width="50%"}
 
 ## Publication
 
