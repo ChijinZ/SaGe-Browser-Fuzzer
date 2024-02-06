@@ -47,7 +47,7 @@ do
         --webkitgtk)
         BROWSERS+=("webkitgtk")
         ;;
-        --chromium)
+        --chrome)
         BROWSERS+=("chromium")
         ;;
         --number=*)
