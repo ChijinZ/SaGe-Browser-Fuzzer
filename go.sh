@@ -67,7 +67,7 @@ for BROWSER in "${BROWSERS[@]}"
 do
     PYTHON_OUTPUT_DIR=$PWD/output/$BROWSER/$TODAYS_DATE
     mkdir -p "$PYTHON_OUTPUT_DIR"
-    LOG_FILE="$SAGE_PATH/output/${BROWSER}_main.log"
+    LOG_FILE="$SAGE_PATH/output/main.log"
 
     # Start main.py with specified parameters and redirect output to both the log file and terminal
     python3 main.py -t 10000 -b $BROWSER -p $NUM_INSTANCES -o $PYTHON_OUTPUT_DIR 2>&1 | tee "$LOG_FILE" &
