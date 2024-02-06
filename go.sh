@@ -18,6 +18,12 @@ export USE_INVALID_TREE=true
 export PRINT_TIME=true
 export INVALID_TREE_PATH="$SAGE_PATH/invalid_tree/invalid_tree.pickle"
 export RULE_INFO_PATH="$SAGE_PATH/invalid_tree/global_info.pickle"
+export CHROMIUM_PATH="$SAGE_PATH/browser_bins/chrome-asan/chrome"
+export CHROMEDRIVER_PATH="$SAGE_PATH/browser_bins/chromedriver"
+export FIREFOX_PATH="$SAGE_PATH/browser_bins/firefox-asan/firefox"
+export FIREFOXDRIVER_PATH="$SAGE_PATH/browser_bins/geckodriver"
+export WEBKIT_BINARY_PATH="$SAGE_PATH/browser_bins/MiniBrowser"
+export WEBKIT_WEBDRIVER_PATH="$SAGE_PATH/browser_bins/WebKitWebDriver"
 
 # Default values
 BROWSER="webkitgtk"
@@ -36,8 +42,8 @@ do
         BROWSER="webkitgtk"
         shift
         ;;
-        --chromium)
-        BROWSER="chrome"
+        --chrome)
+        BROWSER="chromium"
         shift
         ;;
         --number=*)
