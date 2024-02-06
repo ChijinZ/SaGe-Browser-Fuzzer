@@ -29,8 +29,8 @@ export CHROMIUM_PATH="$SAGE_PATH/browser_bins/chrome-asan/chrome"
 export CHROMEDRIVER_PATH="$SAGE_PATH/browser_bins/chromedriver"
 export FIREFOX_PATH="$SAGE_PATH/browser_bins/firefox-asan/firefox"
 export FIREFOXDRIVER_PATH="$SAGE_PATH/browser_bins/geckodriver"
-export WEBKIT_BINARY_PATH="$SAGE_PATH/browser_bins/MiniBrowser"
-export WEBKIT_WEBDRIVER_PATH="$SAGE_PATH/browser_bins/WebKitWebDriver"
+export WEBKIT_BINARY_PATH="$SAGE_PATH/browser_bins/webkit/MiniBrowser"
+export WEBKIT_WEBDRIVER_PATH="$SAGE_PATH/browser_bins/webkit/WebKitWebDriver"
 
 # Default values
 NUM_INSTANCES=10
