@@ -41,6 +41,16 @@ do
     esac
 done
 
+# Function to kill all spawned processes
+cleanup() {
+    echo "Cleaning up spawned processes..."
+    # Kill the process group of the script to stop all child processes
+    kill -- -$$
+}
+
+# Set trap for SIGINT
+trap 'cleanup' SIGINT
+
 # Start main.py with specified parameters and redirect output to both the log file and terminal
 python3 main.py -t 10000 -b $BROWSER -p 10 -o $OUTPUT_DIR 2>&1 | tee "$LOG_FILE" &
 
