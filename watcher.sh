@@ -1,9 +1,39 @@
 #!/bin/bash
 
+# Set default log size limit (in MB)
+LOG_SIZE_LIMIT=${LOG_SIZE_LIMIT:-500}
+
+# Parse command line arguments for --logsize
+for arg in "$@"
+do
+    case $arg in
+        --logsize=*)
+        LOG_SIZE_LIMIT="${arg#*=}"
+        shift
+        ;;
+    esac
+done
+
+# Function to check and trim the log file
+trim_log_file() {
+    local max_size=$((LOG_SIZE_LIMIT * 1024 * 1024)) # Convert MB to bytes
+    while true; do
+        local file_size=$(stat -c%s "$LOG_FILE")
+        if (( file_size > max_size )); then
+            echo "Trimming $LOG_FILE (size: $file_size, limit: $max_size)"
+            tail -c "$max_size" "$LOG_FILE" > "$LOG_FILE.tmp" && mv "$LOG_FILE.tmp" "$LOG_FILE"
+        fi
+        sleep 60 # Check every 60 seconds
+    done
+}
+
+# Start log trimming in background
+SAGE_PATH=${SAGE_PATH:-"$HOME/SaGe-Browser-Fuzzer"}
+LOG_FILE="$SAGE_PATH/output/main.log"
+trim_log_file &
+
 # Set the path to monitor
-#SAGE_PATH=${SAGE_PATH:-"$HOME/SaGe-Browser-Fuzzer"}
 MONITOR_PATH="$SAGE_PATH/output/"
-LOG_FILE="$MONITOR_PATH/main.log"
 INITIAL_STATE_FILE="/tmp/initial_state.txt"
 CURRENT_STATE_FILE="/tmp/current_state.txt"
 
@@ -28,6 +58,9 @@ tmux send-keys -t $SESSION_NAME.1 "echo 'New Findings' | lolcat; watch -n 10 'fi
 
 # Main.py Output in Pane 2 (Colorized)
 tmux send-keys -t $SESSION_NAME.2 "tail -f $LOG_FILE | lolcat" C-m
+
+# Add tmux key binding for closing all windows and clearing terminal
+tmux bind-key C-k run-shell "tmux kill-session; clear"
 
 # Attach to tmux session
 tmux attach-session -t $SESSION_NAME
