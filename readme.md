@@ -64,28 +64,28 @@ Set environment variables for each browser to specify the path of the target bro
 ### Chrome with ASAN
 
 1. **Download and Extract ASAN Chrome**: 
-   Use `get_asan_chrome.py` to download and extract the ASAN build of Chrome into `$SAGE_PATH/browser_bins/`.
+   Use `get_asan_chrome.py` to download and extract the ASAN build of Chrome into `$SAGE_PATH/browser_bins/chrome/`.
 
 2. **Download ChromeDriver**: 
    Obtain ChromeDriver from [Chrome Labs for Testing](https://googlechromelabs.github.io/chrome-for-testing/) and place it in `$SAGE_PATH/browser_bins/`.
 
 3. **Set Environment Variables**:
    ```bash
-   export CHROMIUM_PATH="$SAGE_PATH/browser_bins/chrome-asan"
+   export CHROMIUM_PATH="$SAGE_PATH/browser_bins/chrome-asan/chrome"
    export CHROMEDRIVER_PATH="$SAGE_PATH/browser_bins/chromedriver"
    ```
 
 ### Firefox with ASAN
 
 1. **Download and Extract ASAN Firefox**: 
-   Fetch the latest ASAN build of Firefox and extract it into `$SAGE_PATH/browser_bins/`.
+   Fetch the latest ASAN build of Firefox and extract it into `$SAGE_PATH/browser_bins/firefox-asan/`
 
 2. **Download GeckoDriver**: 
    Acquire GeckoDriver from [Mozilla's GitHub Releases](https://github.com/mozilla/geckodriver/releases) and transfer it to `$SAGE_PATH/browser_bins/`.
 
 3. **Set Environment Variables**:
    ```bash
-   export FIREFOX_PATH="$SAGE_PATH/browser_bins/firefox-asan"
+   export FIREFOX_PATH="$SAGE_PATH/browser_bins/firefox-asan/firefox"
    export FIREFOXDRIVER_PATH="$SAGE_PATH/browser_bins/geckodriver"
    ```
 
@@ -93,8 +93,8 @@ Set environment variables for each browser to specify the path of the target bro
 
 1. **Set Environment Variables for WebKit**:
    ```bash
-   export WEBKIT_BINARY_PATH="$SAGE_PATH/browser_bins/MiniBrowser"
-   export WEBKIT_WEBDRIVER_PATH="$SAGE_PATH/browser_bins/WebKitWebDriver"
+   export WEBKIT_BINARY_PATH="$SAGE_PATH/browser_bins/webkit/MiniBrowser"
+   export WEBKIT_WEBDRIVER_PATH="$SAGE_PATH/browser_bins/webkit/WebKitWebDriver"
    ```
 
 ### Running the Fuzzer
