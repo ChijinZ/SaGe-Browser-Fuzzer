@@ -36,8 +36,8 @@ do
         BROWSER="webkitgtk"
         shift
         ;;
-        --chrome)
-        BROWSER="chromium"
+        --chromium)
+        BROWSER="chrome"
         shift
         ;;
         --number=*)
