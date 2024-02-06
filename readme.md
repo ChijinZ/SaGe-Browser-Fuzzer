@@ -23,46 +23,6 @@ export INVALID_TREE_PATH="$SAGE_PATH/invalid_tree/invalid_tree.pickle"
 export RULE_INFO_PATH="$SAGE_PATH/invalid_tree/global_info.pickle"
 ```
 
-## Browser Setup
-
-This guide details the setup process for Chrome, Firefox, and WebKit browsers with Address Sanitizer (ASAN) builds, along with their respective drivers for use with SaGe-Browser-Fuzzer.
-
-### Chrome with ASAN
-
-1. **Download and Extract ASAN Chrome**:
-   Use the `get_asan_chrome.py` script to download and extract the ASAN build of Chrome into the `browser_bins/` directory.
-
-2. **Download ChromeDriver**:
-   Obtain the compatible ChromeDriver from [Chrome Labs for Testing](https://googlechromelabs.github.io/chrome-for-testing/) and place it in the `browser_bins/` directory.
-
-3. **Set Environment Variables**:
-   ```bash
-   export CHROMIUM_PATH="$(pwd)/browser_bins/chrome-asan"
-   export CHROMEDRIVER_PATH="$(pwd)/browser_bins/chromedriver"
-   ```
-
-### Firefox with ASAN
-
-1. **Download and Extract ASAN Firefox**:
-   Fetch the latest ASAN build of Firefox from the Mozilla repository and extract it into the `browser_bins/` directory.
-
-2. **Download GeckoDriver**:
-   Acquire the latest GeckoDriver from [Mozilla's GitHub Releases](https://github.com/mozilla/geckodriver/releases) and transfer it to the `browser_bins/` directory.
-
-3. **Set Environment Variables**:
-   ```bash
-   export FIREFOX_PATH="$(pwd)/browser_bins/firefox-asan"
-   export FIREFOXDRIVER_PATH="$(pwd)/browser_bins/geckodriver"
-   ```
-
-### WebKit with ASAN
-
-1. **Set Environment Variables for WebKit**:
-   ```bash
-   export WEBKIT_BINARY_PATH="$(pwd)/browser_bins/MiniBrowser"
-   export WEBKIT_WEBDRIVER_PATH="$(pwd)/browser_bins/WebKitWebDriver"
-   ```
-
 Next, use ```python main.py --help``` to show how it works.
 
 ```
@@ -86,34 +46,75 @@ Options:
                         exit after this iteration
 ```
 
-For each kind of browser, we need to set environment variables to specify the path of the target browser and the path of the corresponding webdriver. What follows are the commands for fuzzing WebKit, Chrome, and Firefox:
+# Initial Setup
 
-### Fuzzing WebKit
+Navigate to the cloned SaGe-Browser-Fuzzer directory and set the `SAGE_PATH` environment variable:
 
-```shell
-export WEBKIT_BINARY_PATH="$WEBKIT_PATH/MiniBrowser"
-export WEBKIT_WEBDRIVER_PATH="$WEBKIT_PATH/WebKitWebDriver"
-# max timeout for each input is 10000 ms, 10 instances are created for parallel, target browser is webkitgtk, fuzzing outputs are save in $PWD/output
-python3 main.py -t 10000 -b webkitgtk -p 10 -o $PWD/output
+```bash
+cd /your/cloned/SaGe-Browser-Fuzzer
+export SAGE_PATH=$(pwd)
 ```
 
-### Fuzzing Chrome
+Replace `/your/cloned/SaGe-Browser-Fuzzer` with the actual path to your cloned repository.
 
-```shell
-export CHROMIUM_PATH="$C_PATH/chrome"
-export CHROMEDRIVER_PATH="$C_PATH/chromedriver"
-# max timeout for each input is 10000 ms, 10 instances are created for parallel, target browser is chrome, fuzzing outputs are save in $PWD/output
-python3 main.py -t 10000 -b chromium -p 10 -o $PWD/output
-```
+## Browser Setup
 
-### Fuzzing Firefox
+Set environment variables for each browser to specify the path of the target browser and the corresponding webdriver.
 
-```shell
-export FIREFOXDRIVER_PATH="$F_PATH/geckodriver"
-export FIREFOX_PATH="$F_PATH/firefox"
-# max timeout for each input is 10000 ms, 10 instances are created for parallel, target browser is firefox, fuzzing outputs are save in $PWD/output
-python3 main.py -t 10000 -b firefox -p 10 -o $PWD/output
-```
+### Chrome with ASAN
+
+1. **Download and Extract ASAN Chrome**: 
+   Use `get_asan_chrome.py` to download and extract the ASAN build of Chrome into `$SAGE_PATH/browser_bins/`.
+
+2. **Download ChromeDriver**: 
+   Obtain ChromeDriver from [Chrome Labs for Testing](https://googlechromelabs.github.io/chrome-for-testing/) and place it in `$SAGE_PATH/browser_bins/`.
+
+3. **Set Environment Variables**:
+   ```bash
+   export CHROMIUM_PATH="$SAGE_PATH/browser_bins/chrome-asan"
+   export CHROMEDRIVER_PATH="$SAGE_PATH/browser_bins/chromedriver"
+   ```
+
+### Firefox with ASAN
+
+1. **Download and Extract ASAN Firefox**: 
+   Fetch the latest ASAN build of Firefox and extract it into `$SAGE_PATH/browser_bins/`.
+
+2. **Download GeckoDriver**: 
+   Acquire GeckoDriver from [Mozilla's GitHub Releases](https://github.com/mozilla/geckodriver/releases) and transfer it to `$SAGE_PATH/browser_bins/`.
+
+3. **Set Environment Variables**:
+   ```bash
+   export FIREFOX_PATH="$SAGE_PATH/browser_bins/firefox-asan"
+   export FIREFOXDRIVER_PATH="$SAGE_PATH/browser_bins/geckodriver"
+   ```
+
+### WebKit with ASAN
+
+1. **Set Environment Variables for WebKit**:
+   ```bash
+   export WEBKIT_BINARY_PATH="$SAGE_PATH/browser_bins/MiniBrowser"
+   export WEBKIT_WEBDRIVER_PATH="$SAGE_PATH/browser_bins/WebKitWebDriver"
+   ```
+
+### Running the Fuzzer
+
+Use the following commands to run the fuzzer for each browser. The output will be stored in `$SAGE_PATH/output`.
+
+- **Fuzzing WebKit**:
+  ```bash
+  python3 main.py -t 10000 -b webkitgtk -p 10 -o "$SAGE_PATH/output"
+  ```
+
+- **Fuzzing Chrome**:
+  ```bash
+  python3 main.py -t 10000 -b chromium -p 10 -o "$SAGE_PATH/output"
+  ```
+
+- **Fuzzing Firefox**:
+  ```bash
+  python3 main.py -t 10000 -b firefox -p 10 -o "$SAGE_PATH/output"
+  ```
 
 ### Fuzzing other browsers
 
