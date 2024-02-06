@@ -1,10 +1,16 @@
 #!/bin/bash
 
-# Function to kill all spawned processes
+# Function to kill all spawned processes and specific browser processes
 cleanup() {
-    echo "Terminating all spawned processes..."
+    echo "Terminating all spawned processes and browser processes..."
     kill $(jobs -p) 2>/dev/null
     pkill -P $$  # Kills all processes spawned by this script
+
+    # Killing specific browser processes
+    pkill -f "python3 webkit" 2>/dev/null
+    pkill -f "WebKitWebProcess" 2>/dev/null
+    pkill -f "chromeChrome" 2>/dev/null
+    pkill -f "firefox" 2>/dev/null
 }
 
 # Handle Ctrl-C (SIGINT)
@@ -13,6 +19,7 @@ trap cleanup SIGINT
 # Set SAGE_PATH to the directory of this script
 SAGE_PATH=$(dirname $(readlink -f $0))
 
+# Export environment variables
 export COLLECT_TREE_INFO=true
 export USE_INVALID_TREE=true
 export PRINT_TIME=true
@@ -26,29 +33,25 @@ export WEBKIT_BINARY_PATH="$SAGE_PATH/browser_bins/MiniBrowser"
 export WEBKIT_WEBDRIVER_PATH="$SAGE_PATH/browser_bins/WebKitWebDriver"
 
 # Default values
-BROWSER="webkitgtk"
 NUM_INSTANCES=10
 TODAYS_DATE=$(date +%Y-%m-%d)
+BROWSERS=()
 
 # Check command line arguments
 for arg in "$@"
 do
     case $arg in
         --firefox)
-        BROWSER="firefox"
-        shift
+        BROWSERS+=("firefox")
         ;;
         --webkitgtk)
-        BROWSER="webkitgtk"
-        shift
+        BROWSERS+=("webkitgtk")
         ;;
-        --chrome)
-        BROWSER="chromium"
-        shift
+        --chromium)
+        BROWSERS+=("chromium")
         ;;
         --number=*)
         NUM_INSTANCES="${arg#*=}"
-        shift
         ;;
         *)
         echo "Unsupported option: $arg"
@@ -59,16 +62,19 @@ do
     esac
 done
 
-# Define the output directory and log file
-PYTHON_OUTPUT_DIR=$PWD/output/$BROWSER/$TODAYS_DATE
-mkdir -p "$PYTHON_OUTPUT_DIR"
-LOG_FILE="$SAGE_PATH/output/main.log"
+# Fuzz each browser in the background
+for BROWSER in "${BROWSERS[@]}"
+do
+    PYTHON_OUTPUT_DIR=$PWD/output/$BROWSER/$TODAYS_DATE
+    mkdir -p "$PYTHON_OUTPUT_DIR"
+    LOG_FILE="$SAGE_PATH/output/${BROWSER}_main.log"
 
-# Start main.py with specified parameters and redirect output to both the log file and terminal
-python3 main.py -t 10000 -b $BROWSER -p $NUM_INSTANCES -o $PYTHON_OUTPUT_DIR 2>&1 | tee "$LOG_FILE" &
+    # Start main.py with specified parameters and redirect output to both the log file and terminal
+    python3 main.py -t 10000 -b $BROWSER -p $NUM_INSTANCES -o $PYTHON_OUTPUT_DIR 2>&1 | tee "$LOG_FILE" &
 
-# Record the start time and write it to a file
-echo $(date +%s) > "$PYTHON_OUTPUT_DIR/start_time.txt"
+    # Record the start time and write it to a file
+    echo $(date +%s) > "$PYTHON_OUTPUT_DIR/start_time.txt"
+done
 
-# Wait for main.py to finish
+# Wait for all background processes to finish
 wait
