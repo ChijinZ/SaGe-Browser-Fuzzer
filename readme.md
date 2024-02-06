@@ -15,7 +15,7 @@ SaGe is a browser fuzzer that can effectively explore browsers' semantics.
 
 Before running the tool, first set some environment variables to enable PCSG-guided fuzzing:
 
-```shell
+```
 export COLLECT_TREE_INFO=true
 export USE_INVALID_TREE=true
 export PRINT_TIME=true
@@ -50,7 +50,7 @@ Options:
 
 Navigate to the cloned SaGe-Browser-Fuzzer directory and set the `SAGE_PATH` environment variable:
 
-```bash
+```
 cd /your/cloned/SaGe-Browser-Fuzzer
 export SAGE_PATH=$(pwd)
 ```
@@ -70,7 +70,7 @@ Set environment variables for each browser to specify the path of the target bro
    Obtain ChromeDriver from [Chrome Labs for Testing](https://googlechromelabs.github.io/chrome-for-testing/) and place it in `$SAGE_PATH/browser_bins/`.
 
 3. **Set Environment Variables**:
-   ```bash
+   ```
    export CHROMIUM_PATH="$SAGE_PATH/browser_bins/chrome-asan/chrome"
    export CHROMEDRIVER_PATH="$SAGE_PATH/browser_bins/chromedriver"
    ```
@@ -84,7 +84,7 @@ Set environment variables for each browser to specify the path of the target bro
    Acquire GeckoDriver from [Mozilla's GitHub Releases](https://github.com/mozilla/geckodriver/releases) and transfer it to `$SAGE_PATH/browser_bins/`.
 
 3. **Set Environment Variables**:
-   ```bash
+   ```
    export FIREFOX_PATH="$SAGE_PATH/browser_bins/firefox-asan/firefox"
    export FIREFOXDRIVER_PATH="$SAGE_PATH/browser_bins/geckodriver"
    ```
@@ -92,7 +92,7 @@ Set environment variables for each browser to specify the path of the target bro
 ### WebKit with ASAN
 
 1. **Set Environment Variables for WebKit**:
-   ```bash
+   ```
    export WEBKIT_BINARY_PATH="$SAGE_PATH/browser_bins/webkit/MiniBrowser"
    export WEBKIT_WEBDRIVER_PATH="$SAGE_PATH/browser_bins/webkit/WebKitWebDriver"
    ```
@@ -102,17 +102,17 @@ Set environment variables for each browser to specify the path of the target bro
 Use the following commands to run the fuzzer for each browser. The output will be stored in `$SAGE_PATH/output`.
 
 - **Fuzzing WebKit**:
-  ```bash
+  ```
   python3 main.py -t 10000 -b webkitgtk -p 10 -o "$SAGE_PATH/output"
   ```
 
 - **Fuzzing Chrome**:
-  ```bash
+  ```
   python3 main.py -t 10000 -b chromium -p 10 -o "$SAGE_PATH/output"
   ```
 
 - **Fuzzing Firefox**:
-  ```bash
+  ```
   python3 main.py -t 10000 -b firefox -p 10 -o "$SAGE_PATH/output"
   ```
 
@@ -129,18 +129,18 @@ This tool can adapt to any other browsers that are based on the three browsers. 
 
 ### EXTRA REQUIREMENTS 📦
 - `lolcat` : Install it using the command:
-  ```bash
+  ```
   sudo apt install lolcat
   ```
 - `tmux` : Install it using the command:
-  ```bash
+  ```
   sudo apt install tmux
   ```
 
 ### Setup Steps 🛠️
 1. **Set Binary Path Variables** 
    - Set up the binary path for the browser and webdriver. For example:
-     ```bash
+     ```
      export WEBKIT_BINARY_PATH="$WEBKIT_PATH/MiniBrowser"
      export WEBKIT_WEBDRIVER_PATH="$WEBKIT_PATH/WebKitWebDriver"
      ```
@@ -148,12 +148,12 @@ This tool can adapt to any other browsers that are based on the three browsers. 
 2. **Run Scripts** 🚀
    - Open two terminals.
    - In the first terminal, run the `go.sh` script with the browser option:
-     ```bash
-     ./go.sh --webkit
+     ```
+     ./go.sh --webkit --firefox
      ```
    - In the second terminal, run the `watcher.sh` script:
-     ```bash
-     ./watcher.sh
+     ```
+     ./watch.sh
      ```
 
 ### Monitor Setup Image Demo:
