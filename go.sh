@@ -22,6 +22,7 @@ export RULE_INFO_PATH="$SAGE_PATH/invalid_tree/global_info.pickle"
 # Default values
 BROWSER="webkitgtk"
 NUM_INSTANCES=10
+TODAYS_DATE=$(date +%Y-%m-%d)
 
 # Check command line arguments
 for arg in "$@"
@@ -36,7 +37,7 @@ do
         shift
         ;;
         --chrome)
-        BROWSER="chrome"
+        BROWSER="chromium"
         shift
         ;;
         --number=*)
@@ -45,26 +46,23 @@ do
         ;;
         *)
         echo "Unsupported option: $arg"
-        echo "Supported browsers are --firefox, --webkitgtk, and --chrome."
+        echo "Supported browsers are --firefox, --webkitgtk, and --chromium."
         echo "Use --number to specify the number of instances."
         exit 1
         ;;
     esac
 done
 
-# Define the output directory with browser type and today's date
-TODAYS_DATE=$(date +%Y-%m-%d)
-OUTPUT_DIR="$PWD/output/$BROWSER/$TODAYS_DATE"
-LOG_FILE="$OUTPUT_DIR/main.log"
-
-# Create the output directory if it doesn't exist
-mkdir -p "$OUTPUT_DIR"
+# Define the output directory and log file
+PYTHON_OUTPUT_DIR=$PWD/output/$BROWSER/$TODAYS_DATE
+mkdir -p "$PYTHON_OUTPUT_DIR"
+LOG_FILE="$SAGE_PATH/output/main.log"
 
 # Start main.py with specified parameters and redirect output to both the log file and terminal
-python3 main.py -t 10000 -b $BROWSER -p $NUM_INSTANCES -o $OUTPUT_DIR 2>&1 | tee "$LOG_FILE" &
+python3 main.py -t 10000 -b $BROWSER -p $NUM_INSTANCES -o $PYTHON_OUTPUT_DIR 2>&1 | tee "$LOG_FILE" &
 
 # Record the start time and write it to a file
-echo $(date +%s) > "$OUTPUT_DIR/start_time.txt"
+echo $(date +%s) > "$PYTHON_OUTPUT_DIR/start_time.txt"
 
 # Wait for main.py to finish
 wait
