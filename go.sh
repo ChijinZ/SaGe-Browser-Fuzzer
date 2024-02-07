@@ -11,13 +11,32 @@ cleanup() {
     pkill -P $$ 2>/dev/null
 
     # Explicitly kill processes started from SAGE_PATH
-    pkill -f "$SAGE_PATH" 2>/dev/null
+    pkill -f "$SAGE_PATH" 2>/dev/null && pkill tmux
 }
 
 # Function to kill old processes from SAGE_PATH before starting new ones
 kill_old_processes() {
     echo "Killing old processes started from $SAGE_PATH..."
     pkill -f "$SAGE_PATH" 2>/dev/null
+}
+
+# Function to monitor system memory and restart browser bins/drivers if needed
+watchdog() {
+    while :; do
+        free_ram=$(awk '/MemFree/ {print $2}' /proc/meminfo) # Get free RAM in kB
+        let free_ram_mb=$free_ram/1024
+        if [ "$free_ram_mb" -lt 2000 ]; then
+            echo "Free RAM is under 2GB. Restarting browser bins/drivers..."
+            pkill -f "$CHROMIUM_PATH"
+            pkill -f "$CHROMEDRIVER_PATH"
+            pkill -f "$FIREFOX_PATH"
+            pkill -f "$FIREFOXDRIVER_PATH"
+            pkill -f "$WEBKIT_BINARY_PATH"
+            pkill -f "$WEBKIT_WEBDRIVER_PATH"
+            # Add any additional restart commands for your browsers here
+        fi
+        sleep 30 # Check every 30 seconds
+    done
 }
 
 # Handle Ctrl-C (SIGINT)
@@ -42,6 +61,7 @@ export WEBKIT_WEBDRIVER_PATH="$SAGE_PATH/browser_bins/webkit/WebKitWebDriver"
 # Initialize browsers and their instance counts
 declare -A BROWSER_INSTANCES
 KILL_OLD=false
+WATCHDOG_ENABLED=false
 
 # Check command line arguments
 while (( "$#" )); do
@@ -60,11 +80,16 @@ while (( "$#" )); do
             KILL_OLD=true
             shift
             ;;
+        --watchdog)
+            WATCHDOG_ENABLED=true
+            shift
+            ;;
         *)
             echo "Unsupported option: $1"
             echo "Supported browsers are --firefox, --webkitgtk, and --chromium."
             echo "Specify the number of instances after each browser option."
             echo "Use --kill-old to kill old processes before starting."
+            echo "Use --watchdog to enable the RAM monitoring and auto-restart functionality."
             exit 1
             ;;
     esac
@@ -73,6 +98,11 @@ done
 # If --kill-old was specified, kill old processes
 if [ "$KILL_OLD" = true ]; then
     kill_old_processes
+fi
+
+# If --watchdog was specified, start the watchdog function in the background
+if [ "$WATCHDOG_ENABLED" = true ]; then
+    watchdog &
 fi
 
 # Fuzz each specified browser with its number of instances
