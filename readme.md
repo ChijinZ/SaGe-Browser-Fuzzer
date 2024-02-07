@@ -153,9 +153,13 @@ This tool can adapt to any other browsers that are based on the three browsers. 
      ```
 
    Explainer:
+   
     --chromium <num_instances>: Specifies Chromium browser and number of instances to launch.
+   
     --firefox <num_instances>: Specifies the Firefox browser and number of instances to launch.
+   
     --watchdog: Enables the memory monitoring feature. (If system memory falls below 2GB, the script will automatically kill and attempt to restart the browser instances to prevent system crashes or slowdowns.)
+   
 
    - In the second terminal, run the `watcher.sh` script:
      ```
