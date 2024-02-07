@@ -39,35 +39,31 @@ export FIREFOXDRIVER_PATH="$SAGE_PATH/browser_bins/firefox-asan/geckodriver"
 export WEBKIT_BINARY_PATH="$SAGE_PATH/browser_bins/webkit/MiniBrowser"
 export WEBKIT_WEBDRIVER_PATH="$SAGE_PATH/browser_bins/webkit/WebKitWebDriver"
 
-# Default values
-NUM_INSTANCES=15
-TODAYS_DATE=$(date +%Y-%m-%d)
-BROWSERS=()
+# Initialize browsers and their instance counts
+declare -A BROWSER_INSTANCES
 KILL_OLD=false
 
 # Check command line arguments
-for arg in "$@"
-do
-    case $arg in
-        --firefox)
-            BROWSERS+=("firefox")
-            ;;
-        --webkitgtk)
-            BROWSERS+=("webkitgtk")
-            ;;
-        --chromium)
-            BROWSERS+=("chromium")
-            ;;
-        --number=*)
-            NUM_INSTANCES="${arg#*=}"
+while (( "$#" )); do
+    case "$1" in
+        --firefox|--webkitgtk|--chromium)
+            BROWSER=${1#--}
+            if [[ -n "$2" && "$2" =~ ^[0-9]+$ ]]; then
+                BROWSER_INSTANCES[$BROWSER]=$2
+                shift 2
+            else
+                echo "Error: Expected a number of instances after $1"
+                exit 1
+            fi
             ;;
         --kill-old)
             KILL_OLD=true
+            shift
             ;;
         *)
-            echo "Unsupported option: $arg"
+            echo "Unsupported option: $1"
             echo "Supported browsers are --firefox, --webkitgtk, and --chromium."
-            echo "Use --number to specify the number of instances."
+            echo "Specify the number of instances after each browser option."
             echo "Use --kill-old to kill old processes before starting."
             exit 1
             ;;
@@ -79,10 +75,11 @@ if [ "$KILL_OLD" = true ]; then
     kill_old_processes
 fi
 
-# Fuzz each browser in the background
-for BROWSER in "${BROWSERS[@]}"
+# Fuzz each specified browser with its number of instances
+for BROWSER in "${!BROWSER_INSTANCES[@]}"
 do
-    PYTHON_OUTPUT_DIR=$PWD/output/$BROWSER/$TODAYS_DATE
+    NUM_INSTANCES=${BROWSER_INSTANCES[$BROWSER]}
+    PYTHON_OUTPUT_DIR=$PWD/output/$BROWSER/$(date +%Y-%m-%d)
     mkdir -p "$PYTHON_OUTPUT_DIR"
     LOG_FILE="$SAGE_PATH/output/main.log"
 
