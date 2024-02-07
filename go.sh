@@ -1,16 +1,23 @@
 #!/bin/bash
 
-# Function to kill all spawned processes and specific browser processes
+# Function to kill all spawned processes, browser processes, and any process from SAGE_PATH
 cleanup() {
-    echo "Terminating all spawned processes and browser processes..."
-    kill $(jobs -p) 2>/dev/null
-    pkill -P $$  # Kills all processes spawned by this script
+    echo "Terminating all spawned processes, browser processes, and any process from SAGE_PATH..."
 
-    # Killing specific browser processes
-    pkill -f "python3 webkit" 2>/dev/null
-    pkill -f "WebKitWebProcess" 2>/dev/null
-    pkill -f "chromeChrome" 2>/dev/null
-    pkill -f "firefox" 2>/dev/null
+    # Kills jobs spawned by this script
+    kill $(jobs -p) 2>/dev/null
+
+    # Kills all child processes spawned by this script
+    pkill -P $$ 2>/dev/null
+
+    # Explicitly kill processes started from SAGE_PATH
+    pkill -f "$SAGE_PATH" 2>/dev/null
+}
+
+# Function to kill old processes from SAGE_PATH before starting new ones
+kill_old_processes() {
+    echo "Killing old processes started from $SAGE_PATH..."
+    pkill -f "$SAGE_PATH" 2>/dev/null
 }
 
 # Handle Ctrl-C (SIGINT)
@@ -28,39 +35,49 @@ export RULE_INFO_PATH="$SAGE_PATH/invalid_tree/global_info.pickle"
 export CHROMIUM_PATH="$SAGE_PATH/browser_bins/chrome-asan/chrome"
 export CHROMEDRIVER_PATH="$SAGE_PATH/browser_bins/chromedriver"
 export FIREFOX_PATH="$SAGE_PATH/browser_bins/firefox-asan/firefox"
-export FIREFOXDRIVER_PATH="$SAGE_PATH/browser_bins/geckodriver"
+export FIREFOXDRIVER_PATH="$SAGE_PATH/browser_bins/firefox-asan/geckodriver"
 export WEBKIT_BINARY_PATH="$SAGE_PATH/browser_bins/webkit/MiniBrowser"
 export WEBKIT_WEBDRIVER_PATH="$SAGE_PATH/browser_bins/webkit/WebKitWebDriver"
 
 # Default values
-NUM_INSTANCES=10
+NUM_INSTANCES=15
 TODAYS_DATE=$(date +%Y-%m-%d)
 BROWSERS=()
+KILL_OLD=false
 
 # Check command line arguments
 for arg in "$@"
 do
     case $arg in
         --firefox)
-        BROWSERS+=("firefox")
-        ;;
+            BROWSERS+=("firefox")
+            ;;
         --webkitgtk)
-        BROWSERS+=("webkitgtk")
-        ;;
-        --chrome)
-        BROWSERS+=("chromium")
-        ;;
+            BROWSERS+=("webkitgtk")
+            ;;
+        --chromium)
+            BROWSERS+=("chromium")
+            ;;
         --number=*)
-        NUM_INSTANCES="${arg#*=}"
-        ;;
+            NUM_INSTANCES="${arg#*=}"
+            ;;
+        --kill-old)
+            KILL_OLD=true
+            ;;
         *)
-        echo "Unsupported option: $arg"
-        echo "Supported browsers are --firefox, --webkitgtk, and --chromium."
-        echo "Use --number to specify the number of instances."
-        exit 1
-        ;;
+            echo "Unsupported option: $arg"
+            echo "Supported browsers are --firefox, --webkitgtk, and --chromium."
+            echo "Use --number to specify the number of instances."
+            echo "Use --kill-old to kill old processes before starting."
+            exit 1
+            ;;
     esac
 done
+
+# If --kill-old was specified, kill old processes
+if [ "$KILL_OLD" = true ]; then
+    kill_old_processes
+fi
 
 # Fuzz each browser in the background
 for BROWSER in "${BROWSERS[@]}"
