@@ -1,9 +1,59 @@
 #!/bin/bash
 
+# Dependency list
+declare -a dependencies=("tmux" "tree" "watch" "lolcat" "stat" "tail" "find" "comm" "basename" "btop" "ifne")
+
+# Function to check and install missing dependencies
+check_and_install_deps() {
+    local missing_deps=()
+    for dep in "${dependencies[@]}"; do
+        # Special handling for 'ifne' which is part of 'moreutils'
+        if [[ $dep == "ifne" ]]; then
+            if ! command -v $dep &> /dev/null; then
+                missing_deps+=("moreutils")
+            fi
+        elif ! command -v $dep &> /dev/null; then
+            missing_deps+=($dep)
+        fi
+    done
+
+    if [ ${#missing_deps[@]} -ne 0 ]; then
+        echo "Missing dependencies: ${missing_deps[*]}"
+        echo "Attempting to install missing dependencies..."
+        # Attempt to detect package manager
+        if command -v apt-get &> /dev/null; then
+            sudo apt-get update
+            for dep in "${missing_deps[@]}"; do
+                # Special handling for 'ifne' which is part of 'moreutils'
+                [[ $dep == "ifne" ]] && dep="moreutils"
+                sudo apt-get install -y $dep
+            done
+        elif command -v yum &> /dev/null; then
+            sudo yum update
+            for dep in "${missing_deps[@]}"; do
+                [[ $dep == "ifne" ]] && dep="moreutils"
+                sudo yum install -y $dep
+            done
+        elif command -v brew &> /dev/null; then
+            for dep in "${missing_deps[@]}"; do
+                [[ $dep == "ifne" ]] && dep="moreutils"
+                brew install $dep
+            done
+        else
+            echo "Unsupported package manager. Please install the missing dependencies manually."
+            exit 1
+        fi
+    fi
+}
+
+# Run the dependency check and install function
+check_and_install_deps
+
 # Set default log size limit (in MB)
 LOG_SIZE_LIMIT=${LOG_SIZE_LIMIT:-500}
+USE_LOLCAT=true
 
-# Parse command line arguments for --logsize
+# Parse command line arguments for --logsize and --boring
 for arg in "$@"
 do
     case $arg in
@@ -11,8 +61,20 @@ do
         LOG_SIZE_LIMIT="${arg#*=}"
         shift
         ;;
+        --boring)
+        USE_LOLCAT=false
+        shift
+        ;;
     esac
 done
+
+decorate_cmd() {
+    if [ "$USE_LOLCAT" = true ]; then
+        echo "$1 | lolcat"
+    else
+        echo "$1"
+    fi
+}
 
 # Function to check and trim the log file
 trim_log_file() {
@@ -47,20 +109,41 @@ tmux new-session -d -s $SESSION_NAME
 # Split tmux window horizontally for directory summary and file monitoring
 tmux split-window -h
 
-# Split the second pane horizontally for main.py output
-tmux split-window -t $SESSION_NAME.1 -v
+# Split the first pane (Pane 0) vertically for btop
+tmux split-window -t $SESSION_NAME.0 -v
 
-# Directory Summary in Pane 0 (Colorized Tree of All Current Files, Recursively)
-tmux send-keys -t $SESSION_NAME.0 "watch -n 10 'tree \"$MONITOR_PATH\"' | lolcat" C-m
+# Split the third pane (originally second before adding btop) horizontally for main.py output
+tmux split-window -t $SESSION_NAME.2 -v
 
-# New Files in Output Directory in Pane 1 (Colorized, Only Filenames, Recursively)
-tmux send-keys -t $SESSION_NAME.1 "echo 'New Findings' | lolcat; watch -n 10 'find \"$MONITOR_PATH\" -type f | sort > \"$CURRENT_STATE_FILE\"; comm -13 \"$INITIAL_STATE_FILE\" \"$CURRENT_STATE_FILE\" | while read line; do basename \"\$line\"; done' | lolcat" C-m
+# Directory Summary in Pane 0
+tmux send-keys -t $SESSION_NAME.0 "$(decorate_cmd "watch -n 10 'tree \"$MONITOR_PATH\"'")" C-m
 
-# Main.py Output in Pane 2 (Colorized)
-tmux send-keys -t $SESSION_NAME.2 "tail -f $LOG_FILE | lolcat" C-m
+# btop in Pane 1
+tmux send-keys -t $SESSION_NAME.1 "btop" C-m
 
-# Add tmux key binding for closing all windows and clearing terminal
-tmux bind-key C-k run-shell "tmux kill-session; clear"
+# New Files in Output Directory in Pane 2
+tmux send-keys -t $SESSION_NAME.2 "$(decorate_cmd "echo 'New Findings'; watch -n 10 'find \"$MONITOR_PATH\" -type f | sort > \"$CURRENT_STATE_FILE\"; comm -13 \"$INITIAL_STATE_FILE\" \"$CURRENT_STATE_FILE\" | while read line; do echo \"\$(echo \"\$line\" | cut -d/ -f6): \$(basename \"\$line\")\"; done'")" C-m
 
-# Attach to tmux session
+# Main.py Output in Pane 3
+tmux send-keys -t $SESSION_NAME.3 "$(decorate_cmd "tail -f $LOG_FILE")" C-m
+
+# Function to perform cleanup
+cleanup() {
+    tmux list-sessions | awk 'BEGIN{FS=":"}{print $1}' | ifne xargs -n 1 tmux kill-session -t
+    clear
+    echo "Cleaned up all tmux sessions."
+    exit
+}
+
+# Set the trap for Ctrl-C (SIGINT) now that the script has control
+trap cleanup SIGINT
+
+# Detach from tmux session to allow the script to continue running and catch signals
+tmux detach-client -s $SESSION_NAME
+
+# Attach to tmux session in a way that allows the script to capture Ctrl-C
 tmux attach-session -t $SESSION_NAME
+
+# Optionally, call cleanup function here if you want to ensure cleanup happens
+# even if the script exits without Ctrl-C interruption
+cleanup
