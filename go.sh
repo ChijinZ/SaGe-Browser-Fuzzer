@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Unlimit the amount of open files
+ulimit -S -n 999999
+
 # Path to the GDM3 custom configuration file
 GDM3_CUSTOM_CONF="/etc/gdm3/custom.conf"
 WAYLAND_ENABLED=false
