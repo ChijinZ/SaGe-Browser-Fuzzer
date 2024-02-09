@@ -1,5 +1,22 @@
 #!/bin/bash
 
+# Function to check Wayland in GDM3 configuration
+check_gdm3_conf() {
+    if [ -f "$GDM3_CUSTOM_CONF" ]; then
+        if grep -E "^[^#]*WaylandEnable=false" "$GDM3_CUSTOM_CONF" &>/dev/null; then
+            echo "Wayland is already disabled in GDM3 configuration."
+        elif grep -E "^[^#]*WaylandEnable=true" "$GDM3_CUSTOM_CONF" &>/dev/null; then
+            echo "Wayland is enabled in GDM3 configuration. Please disable it to prevent instability when fuzzing."
+            WAYLAND_ENABLED=true
+        else
+            echo "Wayland setting not found in GDM3 configuration. If you are using Wayland, please disable it to prevent instability when fuzzing."
+        fi
+    else
+        echo "GDM3 custom configuration file not found. Skipping..."
+    fi
+}
+
+
 # Check if apport is installed
 if dpkg-query -W -f='${Status}' apport 2>/dev/null | grep -q "install ok installed"; then
     echo "Apport is currently installed on your system. This can get messy."
