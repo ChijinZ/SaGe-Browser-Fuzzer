@@ -5,11 +5,11 @@
 current_limit=$(ulimit -n)
 
 # Define the desired minimum limit
-desired_limit=80000
+desired_limit=100000
 
 # Check if the current limit is less than the desired limit
 if [[ "$current_limit" -lt 1025 ]]; then
-  echo "Current ulimit for open files ($current_limit) is under 1025. Adjusting it to $desired_limit."
+  echo "Current ulimit for open files ($current_limit) is under 1024. Adjusting it to $desired_limit."
 
   # Attempt to adjust the limit using prlimit for the current shell
   sudo prlimit --nofile=$desired_limit --pid $$
