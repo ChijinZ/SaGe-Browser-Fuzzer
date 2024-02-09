@@ -1,7 +1,28 @@
 #!/bin/bash
 
 # Unlimit the amount of open files
-ulimit -S -n 999999
+# Retrieve the current limit on open files
+current_limit=$(ulimit -n)
+
+# Define the desired minimum limit
+desired_limit=80000
+
+# Check if the current limit is less than the desired limit
+if [[ "$current_limit" -lt 1025 ]]; then
+  echo "Current ulimit for open files ($current_limit) is under 1025. Adjusting it to $desired_limit."
+
+  # Attempt to adjust the limit using prlimit for the current shell
+  sudo prlimit --nofile=$desired_limit --pid $$
+
+  # Attempt to adjust the shell's soft limit
+  ulimit -n $desired_limit
+
+  # Inform the user of the new limit
+  echo "Ulimit adjusted to: $(ulimit -n)"
+else
+  # Inform the user that no adjustment was needed
+  echo "Current ulimit for open files ($current_limit) is sufficient."
+fi
 
 # Path to the GDM3 custom configuration file
 GDM3_CUSTOM_CONF="/etc/gdm3/custom.conf"
