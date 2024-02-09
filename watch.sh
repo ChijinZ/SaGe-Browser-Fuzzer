@@ -3,6 +3,16 @@
 # Dependency list
 declare -a dependencies=("tmux" "tree" "watch" "lolcat" "stat" "tail" "find" "comm" "basename" "btop" "ifne")
 
+# Check if apport is installed
+if dpkg-query -W -f='${Status}' apport 2>/dev/null | grep -q "install ok installed"; then
+    echo "Apport is currently installed on your system. This can get messy."
+    echo "Please uninstall apport before proceeding with this script."
+    echo "You can uninstall apport by running: sudo apt-get remove --purge apport"
+    exit 1
+else
+    echo "apport is not installed, proceeding..."
+fi
+
 # Function to check and install missing dependencies
 check_and_install_deps() {
     local missing_deps=()
