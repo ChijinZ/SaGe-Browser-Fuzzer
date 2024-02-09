@@ -121,8 +121,17 @@ tmux send-keys -t $SESSION_NAME.0 "$(decorate_cmd "watch -n 10 'tree \"$MONITOR_
 # btop in Pane 1
 tmux send-keys -t $SESSION_NAME.1 "btop" C-m
 
-# New Files in Output Directory in Pane 2
-tmux send-keys -t $SESSION_NAME.2 "$(decorate_cmd "echo 'New Findings'; watch -n 10 'find \"$MONITOR_PATH\" -type f | sort > \"$CURRENT_STATE_FILE\"; comm -13 \"$INITIAL_STATE_FILE\" \"$CURRENT_STATE_FILE\" | while read line; do echo \"\$(echo \"\$line\" | cut -d/ -f6): \$(basename \"\$line\")\"; done'")" C-m
+# Define browser names and corresponding emojis
+declare -A browser_emojis=(
+    ["webkit"]="🌐 WebKit"
+    ["firefox"]="🦊 Firefox"
+    ["chromium"]="🌏 Chrome"
+)
+
+# Command for Pane 2 to monitor new .html crash reports and format the output
+tmux send-keys -t $SESSION_NAME.2 "$(decorate_cmd "watch -n 10 'current_time=\$(date +\"%Y-%m-%d %H:%M:%S\"); find \"$MONITOR_PATH\" -type f -name \"*.html\" | sort > \"$CURRENT_STATE_FILE\"; comm -13 \"$INITIAL_STATE_FILE\" \"$CURRENT_STATE_FILE\" | while read line; do relative_path=\$(echo \"\$line\" | sed \"s|$SAGE_PATH/||\"); browser_key=\$(echo \$relative_path | cut -d/ -f2 | awk \"{print tolower(\$0)}\"); browser_name=\${browser_emojis[\$browser_key]}; [ ! -z \"\$browser_name\" ] && echo -e \"\n\$browser_name CRASHED! 🎉 - Time: \$current_time - Location: \$relative_path\n\"; done'")" C-m
+
+
 
 # Main.py Output in Pane 3
 tmux send-keys -t $SESSION_NAME.3 "$(decorate_cmd "tail -f $LOG_FILE")" C-m
