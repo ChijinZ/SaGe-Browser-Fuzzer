@@ -25,19 +25,27 @@ watchdog() {
     while :; do
         free_ram=$(awk '/MemFree/ {print $2}' /proc/meminfo) # Get free RAM in kB
         let free_ram_mb=$free_ram/1024
+        echo "Checking memory: Free RAM is ${free_ram_mb}MB" # Debug log
         if [ "$free_ram_mb" -lt 2000 ]; then
-            echo "Free RAM is under 2GB. Restarting browser bins/drivers..."
-            pkill -f "$CHROMIUM_PATH"
-            pkill -f "$CHROMEDRIVER_PATH"
-            pkill -f "$FIREFOX_PATH"
-            pkill -f "$FIREFOXDRIVER_PATH"
-            pkill -f "$WEBKIT_BINARY_PATH"
-            pkill -f "$WEBKIT_WEBDRIVER_PATH"
-            # Add any additional restart commands for your browsers here
+            echo "Free RAM is under 2GB. Attempting to restart browser bins/drivers..."
+            # Use more specific process matching if necessary
+            pkill -f "$(basename $CHROMIUM_PATH)"
+            pkill -f "$(basename $CHROMEDRIVER_PATH)"
+            pkill -f "$(basename $FIREFOX_PATH)"
+            pkill -f "$(basename $FIREFOXDRIVER_PATH)"
+            pkill -f "$(basename $WEBKIT_BINARY_PATH)"
+            pkill -f "$(basename $WEBKIT_WEBDRIVER_PATH)"
+			pkill -f "go.sh"
+            # Log restart attempt
+            echo "Browser bins/drivers restart attempted."
+        else
+            echo "Memory levels are adequate. No action taken."
         fi
-        sleep 30 # Check every 30 seconds
+        sleep 5
+		# Check every 5 seconds
     done
 }
+
 
 # Handle Ctrl-C (SIGINT)
 trap cleanup SIGINT
@@ -105,16 +113,20 @@ if [ "$WATCHDOG_ENABLED" = true ]; then
     watchdog &
 fi
 
+# General output directory for logs
+GENERAL_OUTPUT_DIR=$SAGE_PATH/output
+mkdir -p "$GENERAL_OUTPUT_DIR"
+LOG_FILE="$GENERAL_OUTPUT_DIR/main.log"
+
 # Fuzz each specified browser with its number of instances
 for BROWSER in "${!BROWSER_INSTANCES[@]}"
 do
     NUM_INSTANCES=${BROWSER_INSTANCES[$BROWSER]}
-    PYTHON_OUTPUT_DIR=$PWD/output/$BROWSER/$(date +%Y-%m-%d)
+    PYTHON_OUTPUT_DIR=$SAGE_PATH/output/$BROWSER/$(date +%Y-%m-%d)
     mkdir -p "$PYTHON_OUTPUT_DIR"
-    LOG_FILE="$SAGE_PATH/output/main.log"
 
     # Start main.py with specified parameters and redirect output to both the log file and terminal
-    python3 main.py -t 10000 -b $BROWSER -p $NUM_INSTANCES -o $PYTHON_OUTPUT_DIR 2>&1 | tee "$LOG_FILE" &
+    python3 main.py -t 10000 -b $BROWSER -p $NUM_INSTANCES -o $PYTHON_OUTPUT_DIR 2>&1 | tee -a "$LOG_FILE" &
 
     # Record the start time and write it to a file
     echo $(date +%s) > "$PYTHON_OUTPUT_DIR/start_time.txt"
