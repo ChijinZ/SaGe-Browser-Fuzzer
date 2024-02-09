@@ -116,7 +116,12 @@ tmux split-window -t $SESSION_NAME.0 -v
 tmux split-window -t $SESSION_NAME.2 -v
 
 # Directory Summary in Pane 0
-tmux send-keys -t $SESSION_NAME.0 "$(decorate_cmd "watch -n 10 'tree \"$MONITOR_PATH\"'")" C-m
+tmux send-keys -t $SESSION_NAME.0 "$(decorate_cmd "watch -n 1 'pgrep -afl \"chrome|chromium|webkitgtk|webkit|webdriver|geckodriver|chromedriver|generator.py\" | grep -Ev \"watch|sed\" | sed -e \"s@.*/@@\" -e \"s/chrome$/🌏 &/\" -e \"s/chromium$/🌐 &/\" -e \"s/webkitgtk$/🌍 &/\" -e \"s/webkit$/🌍 &/\" -e \"s/webdriver$/🚗 &/\" -e \"s/geckodriver$/🦊 &/\" -e \"s/chromedriver$/🌈 &/\" -e \"s/generator.py$/⚙️ &/\" | pr -T -2'")" C-m
+
+
+
+
+
 
 # btop in Pane 1
 tmux send-keys -t $SESSION_NAME.1 "btop" C-m
@@ -128,8 +133,9 @@ declare -A browser_emojis=(
     ["chromium"]="🌏 Chrome"
 )
 
-# Command for Pane 2 to monitor new .html crash reports and format the output
-tmux send-keys -t $SESSION_NAME.2 "$(decorate_cmd "watch -n 10 'current_time=\$(date +\"%Y-%m-%d %H:%M:%S\"); find \"$MONITOR_PATH\" -type f -name \"*.html\" | sort > \"$CURRENT_STATE_FILE\"; comm -13 \"$INITIAL_STATE_FILE\" \"$CURRENT_STATE_FILE\" | while read line; do relative_path=\$(echo \"\$line\" | sed \"s|$SAGE_PATH/||\"); browser_key=\$(echo \$relative_path | cut -d/ -f2 | awk \"{print tolower(\$0)}\"); browser_name=\${browser_emojis[\$browser_key]}; [ ! -z \"\$browser_name\" ] && echo -e \"\n\$browser_name CRASHED! 🎉 - Time: \$current_time - Location: \$relative_path\n\"; done'")" C-m
+# New Files in Output Directory in Pane 2 (Timestamp Fixed, Corrected Order, and Logging)
+tmux send-keys -t $SESSION_NAME.2 "$(decorate_cmd "echo 'New Findings'; watch -n 10 'find \"$MONITOR_PATH\" -type f -name \"*.html\" | sort > \"$CURRENT_STATE_FILE\"; comm -13 \"$INITIAL_STATE_FILE\" \"$CURRENT_STATE_FILE\" | while read line; do current_time=\$(date +\"%Y-%m-%d %H:%M:%S\"); browser=\"\"; case \"\$line\" in *chromium*) browser=\"Chromium CRASHED! 🌏\";; *webkitgtk*) browser=\"WebKitGTK CRASHED! 🌐\";; *firefox*) browser=\"Firefox CRASHED! 🦊\";; esac; relative_path=\${line#$SAGE_PATH/}; crash_message=\"🎉 \$browser- Time: \$current_time - Location: \$relative_path\"; echo \"\$crash_message\"; echo \"\$crash_message\" >> \"$SAGE_PATH/results.txt\"; done'")" C-m
+
 
 
 
