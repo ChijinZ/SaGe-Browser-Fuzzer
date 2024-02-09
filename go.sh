@@ -1,5 +1,15 @@
 #!/bin/bash
 
+# Check if apport is installed
+if dpkg-query -W -f='${Status}' apport 2>/dev/null | grep -q "install ok installed"; then
+    echo "Apport is currently installed on your system. This can get messy."
+    echo "Please uninstall apport before proceeding with this script."
+    echo "You can uninstall apport by running: sudo apt-get remove --purge apport"
+    exit 1
+else
+    echo "apport is not installed, proceeding..."
+fi
+
 # Function to kill all spawned processes, browser processes, and any process from SAGE_PATH
 cleanup() {
     echo "Terminating all spawned processes, browser processes, and any process from SAGE_PATH..."
