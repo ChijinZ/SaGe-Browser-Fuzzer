@@ -1,7 +1,9 @@
 #!/bin/bash
 
-# Dependency list
-declare -a dependencies=("tmux" "tree" "watch" "lolcat" "stat" "tail" "find" "comm" "basename" "btop" "ifne")
+
+# Path to the GDM3 custom configuration file
+GDM3_CUSTOM_CONF="/etc/gdm3/custom.conf"
+WAYLAND_ENABLED=false
 
 # Function to check Wayland in GDM3 configuration
 check_gdm3_conf() {
@@ -19,6 +21,26 @@ check_gdm3_conf() {
     fi
 }
 
+# Function to check Wayland in environment variables
+check_env_vars() {
+    if [ "$XDG_SESSION_TYPE" == "wayland" ] || [ "$WAYLAND_DISPLAY" != "" ]; then
+        echo "Wayland session detected via environment variables. Please switch to an X11 session to prevent instability when fuzzing."
+        WAYLAND_ENABLED=true
+    fi
+}
+
+# Execute checks
+check_gdm3_conf
+check_env_vars
+
+# Final decision
+if $WAYLAND_ENABLED; then
+    echo "To disable Wayland in GDM3, edit /etc/gdm3/custom.conf and set 'WaylandEnable=false' or comment out the line."
+    echo "Then, restart your system or log out and select an X11 session from the login screen."
+    exit 1
+else
+    echo "Continuing with the script..."
+fi
 
 # Check if apport is installed
 if dpkg-query -W -f='${Status}' apport 2>/dev/null | grep -q "install ok installed"; then
@@ -29,6 +51,10 @@ if dpkg-query -W -f='${Status}' apport 2>/dev/null | grep -q "install ok install
 else
     echo "apport is not installed, proceeding..."
 fi
+
+
+# Dependency list
+declare -a dependencies=("tmux" "tree" "watch" "lolcat" "stat" "tail" "find" "comm" "basename" "btop" "ifne")
 
 # Function to check and install missing dependencies
 check_and_install_deps() {
@@ -107,10 +133,15 @@ decorate_cmd() {
 trim_log_file() {
     local max_size=$((LOG_SIZE_LIMIT * 1024 * 1024)) # Convert MB to bytes
     while true; do
-        local file_size=$(stat -c%s "$LOG_FILE")
+        local file_size=$(stat -c%s "$LOG_FILE" 2>/dev/null || echo 0)
         if (( file_size > max_size )); then
             echo "Trimming $LOG_FILE (size: $file_size, limit: $max_size)"
-            tail -c "$max_size" "$LOG_FILE" > "$LOG_FILE.tmp" && mv "$LOG_FILE.tmp" "$LOG_FILE"
+            tail -c "$max_size" "$LOG_FILE" > "$LOG_FILE.tmp"
+            if [ -s "$LOG_FILE.tmp" ]; then
+                mv "$LOG_FILE.tmp" "$LOG_FILE"
+            else
+                echo "Temporary file not created or is empty, skipping move operation."
+            fi
         fi
         sleep 60 # Check every 60 seconds
     done
@@ -161,7 +192,9 @@ declare -A browser_emojis=(
 )
 
 # New Files in Output Directory in Pane 2 (Timestamp Fixed, Corrected Order, and Logging)
-tmux send-keys -t $SESSION_NAME.2 "$(decorate_cmd "echo 'New Findings'; watch -n 10 'find \"$MONITOR_PATH\" -type f -name \"*.html\" | sort > \"$CURRENT_STATE_FILE\"; comm -13 \"$INITIAL_STATE_FILE\" \"$CURRENT_STATE_FILE\" | while read line; do current_time=\$(date +\"%Y-%m-%d %H:%M:%S\"); browser=\"\"; case \"\$line\" in *chromium*) browser=\"Chromium CRASHED! 🌏\";; *webkitgtk*) browser=\"WebKitGTK CRASHED! 🌐\";; *firefox*) browser=\"Firefox CRASHED! 🦊\";; esac; relative_path=\${line#$SAGE_PATH/}; crash_message=\"🎉 \$browser- Time: \$current_time - Location: \$relative_path\"; echo \"\$crash_message\"; echo \"\$crash_message\" >> \"$SAGE_PATH/results.txt\"; done'")" C-m
+
+tmux send-keys -t $SESSION_NAME.2 "$(decorate_cmd "echo 'New Findings'; watch -n 1 'find \"$MONITOR_PATH\" -type f -name \"*.html\" | sort > \"$CURRENT_STATE_FILE\"; comm -13 \"$INITIAL_STATE_FILE\" \"$CURRENT_STATE_FILE\" | while IFS= read -r line; do browser=\"\"; case \"\$line\" in *chromium*) browser=\"Chromium CRASHED! 🌏\";; *webkitgtk*) browser=\"WebKitGTK CRASHED! 🌐\";; *firefox*) browser=\"Firefox CRASHED! 🦊\";; esac; relative_path=\${line#$SAGE_PATH/}; crash_message=\"🎉 \$browser - Location: \$relative_path\"; echo \"\$crash_message\"; echo \"\$crash_message\" >> \"$SAGE_PATH/results.txt\"; done'")" C-m
+
 
 
 
