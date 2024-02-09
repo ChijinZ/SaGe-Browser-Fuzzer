@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Path to the GDM3 custom configuration file
+GDM3_CUSTOM_CONF="/etc/gdm3/custom.conf"
+WAYLAND_ENABLED=false
+WATCHDOG_PID=0
+
 # Function to check Wayland in GDM3 configuration
 check_gdm3_conf() {
     if [ -f "$GDM3_CUSTOM_CONF" ]; then
@@ -16,6 +21,26 @@ check_gdm3_conf() {
     fi
 }
 
+# Function to check Wayland in environment variables
+check_env_vars() {
+    if [ "$XDG_SESSION_TYPE" == "wayland" ] || [ "$WAYLAND_DISPLAY" != "" ]; then
+        echo "Wayland session detected via environment variables. Please switch to an X11 session to prevent instability when fuzzing."
+        WAYLAND_ENABLED=true
+    fi
+}
+
+# Execute checks
+check_gdm3_conf
+check_env_vars
+
+# Final decision
+if $WAYLAND_ENABLED; then
+    echo "To disable Wayland in GDM3, edit /etc/gdm3/custom.conf and set 'WaylandEnable=false' or comment out the line."
+    echo "Then, restart your system or log out and select an X11 session from the login screen."
+    exit 1
+else
+    echo "Continuing with the script..."
+fi
 
 # Check if apport is installed
 if dpkg-query -W -f='${Status}' apport 2>/dev/null | grep -q "install ok installed"; then
@@ -29,7 +54,7 @@ fi
 
 # Function to kill all spawned processes, browser processes, and any process from SAGE_PATH
 cleanup() {
-    echo "Terminating all spawned processes, browser processes, and any process from SAGE_PATH..."
+    echo "Terminating all spawned processes, browser processes, any process from SAGE_PATH, and the watchdog..."
 
     # Kills jobs spawned by this script
     kill $(jobs -p) 2>/dev/null
@@ -39,6 +64,12 @@ cleanup() {
 
     # Explicitly kill processes started from SAGE_PATH
     pkill -f "$SAGE_PATH" 2>/dev/null && pkill tmux
+
+    # If watchdog is running, kill it
+    if [ $WATCHDOG_PID -ne 0 ]; then
+        kill -9 $WATCHDOG_PID 2>/dev/null
+        echo "Watchdog (PID $WATCHDOG_PID) terminated."
+    fi
 }
 
 # Function to kill old processes from SAGE_PATH before starting new ones
@@ -47,38 +78,68 @@ kill_old_processes() {
     pkill -f "$SAGE_PATH" 2>/dev/null
 }
 
-# Function to monitor system memory and restart browser bins/drivers if needed
+# Function to monitor system memory, restart browser bins/drivers if needed, and auto-kill processes after a set timeout
 watchdog() {
+    local start_time=$(date +%s)
+    # Define an array with names of binaries you're targeting for fuzzier matching
+    local browser_bin_names=("chrome" "chromedriver" "firefox" "geckodriver" "MiniBrowser" "WebKitWebDriver")
+    # Define an array of utilities to exclude from being terminated
+    local exclude_utilities=("tmux" "tree" "watch" "lolcat" "stat" "tail" "find" "comm" "basename" "btop" "ifne" "grep" "ps")
+
     while :; do
-        free_ram=$(awk '/MemFree/ {print $2}' /proc/meminfo) # Get free RAM in kB
-        let free_ram_mb=$free_ram/1024
-        echo "Checking memory: Free RAM is ${free_ram_mb}MB" # Debug log
-        if [ "$free_ram_mb" -lt 2000 ]; then
-            echo "Free RAM is under 2GB. Attempting to restart browser bins/drivers..."
-            # Use more specific process matching if necessary
-            pkill -f "$(basename $CHROMIUM_PATH)"
-            pkill -f "$(basename $CHROMEDRIVER_PATH)"
-            pkill -f "$(basename $FIREFOX_PATH)"
-            pkill -f "$(basename $FIREFOXDRIVER_PATH)"
-            pkill -f "$(basename $WEBKIT_BINARY_PATH)"
-            pkill -f "$(basename $WEBKIT_WEBDRIVER_PATH)"
-			pkill -f "go.sh"
-            # Log restart attempt
-            echo "Browser bins/drivers restart attempted."
-        else
-            echo "Memory levels are adequate. No action taken."
+        local current_time=$(date +%s)
+        local elapsed_time=$((current_time - start_time))
+
+        if [[ -n "$TIMER_PURGE" && "$elapsed_time" -ge "$TIMER_PURGE" ]]; then
+            for bin_name in "${browser_bin_names[@]}"; do
+                # Use pgrep to list all matching processes, then filter out excludes
+                for pid in $(pgrep -f "$bin_name"); do
+                    local cmd=$(ps -p $pid -o comm=)
+                    local exclude=false
+                    for exclude_cmd in "${exclude_utilities[@]}"; do
+                        if [[ "$cmd" == *"$exclude_cmd"* ]]; then
+                            exclude=true
+                            break
+                        fi
+                    done
+                    if [ "$exclude" = false ]; then
+                        kill -9 $pid 2>/dev/null
+                    fi
+                done
+            done
+            break # Exit the loop and stop the watchdog
+        fi
+
+        local free_ram=$(awk '/MemAvailable/ {print $2}' /proc/meminfo) # Use MemAvailable for a more accurate reading
+        local available_ram_mb=$((free_ram/1024))
+        if [[ "$available_ram_mb" -lt 2000 ]]; then
+            for bin_name in "${browser_bin_names[@]}"; do
+                for pid in $(pgrep -f "$bin_name"); do
+                    local cmd=$(ps -p $pid -o comm=)
+                    local exclude=false
+                    for exclude_cmd in "${exclude_utilities[@]}"; do
+                        if [[ "$cmd" == *"$exclude_cmd"* ]]; then
+                            exclude=true
+                            break
+                        fi
+                    done
+                    if [ "$exclude" = false ]; then
+                        kill -9 $pid 2>/dev/null
+                    fi
+                done
+            done
         fi
         sleep 5
-		# Check every 5 seconds
     done
 }
 
 
-# Handle Ctrl-C (SIGINT)
-trap cleanup SIGINT
+
+# Handle Ctrl-C (SIGINT) and script exit (EXIT)
+trap cleanup SIGINT EXIT
 
 # Set SAGE_PATH to the directory of this script
-SAGE_PATH=$(dirname $(readlink -f $0))
+SAGE_PATH=$(dirname "$(readlink -f "$0")")
 
 # Export environment variables
 export COLLECT_TREE_INFO=true
@@ -135,15 +196,16 @@ if [ "$KILL_OLD" = true ]; then
     kill_old_processes
 fi
 
-# If --watchdog was specified, start the watchdog function in the background
-if [ "$WATCHDOG_ENABLED" = true ]; then
-    watchdog &
-fi
-
 # General output directory for logs
 GENERAL_OUTPUT_DIR=$SAGE_PATH/output
 mkdir -p "$GENERAL_OUTPUT_DIR"
 LOG_FILE="$GENERAL_OUTPUT_DIR/main.log"
+
+# If --watchdog was specified, start the watchdog function in the background
+if [ "$WATCHDOG_ENABLED" = true ]; then
+    watchdog &
+    WATCHDOG_PID=$!
+fi
 
 # Fuzz each specified browser with its number of instances
 for BROWSER in "${!BROWSER_INSTANCES[@]}"
