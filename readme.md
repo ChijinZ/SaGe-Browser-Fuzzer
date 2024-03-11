@@ -30,7 +30,7 @@ export INVALID_TREE_PATH="$SAGE_PATH/invalid_tree/invalid_tree.pickle"
 export RULE_INFO_PATH="$SAGE_PATH/invalid_tree/global_info.pickle"
 ```
 
-### Executing SaGe with `sage_launcher.sh` and sage_watcher.sh`
+### Executing SaGe with `sage_launcher.sh`
 
 Utilize the `sage_launcher.sh` script for streamlined execution. 
 
