@@ -101,7 +101,7 @@ It simplifies the process with dialog boxes for user input and displays progress
 
 ### Usage:
 
-1. **Start the Script**: Run the script with `./browser_builder_setup.sh`.
+1. **Start the Script**: Run the script with `./browser_builders/sage_getwebkit.sh.sh`.
 2. **Follow Dialog Prompts**: Input the desired WebKitGTK version, select build options, and proceed through the setup as guided by the dialogs.
 3. **Monitor Progress**: The script displays progress in dialog boxes for each step, including package installations and builds.
 4. **Completion**: Upon successful completion, the environment will be set up with the selected configurations.
