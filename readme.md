@@ -92,6 +92,9 @@ The included WebKitGTK Builder Setup script automates the setup process for buil
 
 It simplifies the process with dialog boxes for user input and displays progress in a clean and interactive manner.
 
+
+![WebKitBuilder Demo Image](webkitbuilder.png)
+
 ### Features:
 
 - **Interactive Dialogs**: Utilizes dialog boxes for inputs and displays like welcome message, WebKitGTK version input, and build options.
@@ -117,7 +120,7 @@ Our approach and the detailed workings of SaGe are described in a publication ac
 This tool can adapt to any other browsers that are based on the three browsers. Generally speaking, almost all browsers are built on the top of the above three browsers. If users want to test a browser other than the three, they need to implement a subclass of ``FuzzedBrowser`` in the ``browser_adapters`` directory, and register itself in the ``get_browser()`` function of ``browser_selenium.py``.
 
 ## Implementation/Configuration Details
-- If you don’t want to use Xvfb, set ``export NO_XVFB=true`` before running ``main.py``.
+- If you don’t want to use Xvfb, set ``export NO_XVFB=true`` before running ``go.sh``.
 - During fuzzing, suppose we set p=2, this means that we create two (almost) separated browser instances, and each of them creates a new tab for handling one fuzzing input. If a browser crashes, the fuzzer will close it and create a new browser instance for testing.
 - Browsers may crash because of long-term running. For stability, the fuzzer will close an instance with 1% probability. Users can use ``CLOSE_BROWSER_PROB`` to change this setting. For example, ``export CLOSE_BROWSER_PROB=0.05`` will set the probability to 5%.
 
