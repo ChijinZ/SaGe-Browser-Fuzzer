@@ -83,6 +83,29 @@ export FIREFOX_PATH="$F_PATH/firefox"
 ./sage_launcher.sh --firefox 5
 ```
 
+
+## DEMO: WebKit Builder Setup 🛠️
+
+The included WebKitGTK Builder Setup script automates the setup process for building WebKitGTK for use with SaGe, and other dependencies. 
+
+It simplifies the process with dialog boxes for user input and displays progress in a clean and interactive manner.
+
+### Features:
+
+- **Interactive Dialogs**: Utilizes dialog boxes for inputs and displays like welcome message, WebKitGTK version input, and build options.
+- **Dynamic Build Options**: Allows selecting various build options through a checklist dialog.
+- **Package Installation**: Installs required packages automatically based on the build environment needs.
+- **Dependency Management**: Clones and sets up necessary dependencies like libjxl and libbacktrace.
+- **Swapfile Management**: Includes functionality to create and remove a swapfile to facilitate builds on systems with limited RAM.
+- **Custom Build Commands**: Converts selected build options into commands for cmake and Ninja, facilitating a tailored build process.
+
+### Usage:
+
+1. **Start the Script**: Run the script with `./browser_builder_setup.sh`.
+2. **Follow Dialog Prompts**: Input the desired WebKitGTK version, select build options, and proceed through the setup as guided by the dialogs.
+3. **Monitor Progress**: The script displays progress in dialog boxes for each step, including package installations and builds.
+4. **Completion**: Upon successful completion, the environment will be set up with the selected configurations.
+
 ## Academic Contributions 🎓
 
 Our approach and the detailed workings of SaGe are described in a publication accepted by OOPSLA 2023. For enthusiasts and researchers, a Docker environment is available for replicating our experiments, ensuring a seamless experience in understanding the tool's capabilities.
