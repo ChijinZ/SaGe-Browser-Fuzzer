@@ -1,19 +1,26 @@
-# SaGe browser fuzzer
+
+# SaGe Browser Fuzzer 🌐💻
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8328742.svg)](https://doi.org/10.5281/zenodo.8328742)
 
-SaGe is a browser fuzzer that can effectively explore browsers' semantics.
+Welcome to SaGe Browser Fuzzer, a cutting-edge tool designed for the intricate exploration of web browser semantics 🚀. Developed with a keen focus on identifying and cataloging vulnerabilities, SaGe offers a comprehensive suite of features for thorough browser testing.
 
-## Requirement
+## System Requirements 📋
 
-- OS: Linux (recommended, well tested in Ubuntu 20.04 LTS and 22.04 LTS); MacOS (supposed to work but not well tested); Windows (not well tested)
-- Python 3.8+
-- Selenium (``pip3 install selenium==3.141.0`` and ``pip3 install urllib3==1.26.5``. The versions are well tested, but the latest versions should also work.)
-- Xvfb (apt install xvfb)
+- **Operating System**: Linux (Ubuntu 20.04 LTS and 22.04 LTS highly recommended; other distributions may function but are less tested), MacOS (experimental support), Windows (limited testing).
+- **Python**: Version 3.8 or newer.
+- **Selenium**: Install via `pip3 install selenium==3.141.0` and `pip3 install urllib3==1.26.5`. Newer versions may also be compatible.
+- **Xvfb**: Required for headless operation on Linux, install with `apt install xvfb`.
 
-## Usage
+## Installation 🛠
 
-Before running the tool, first set some environment variables to enable PCSG-guided fuzzing:
+Ensure all dependencies are met. 
+
+Linux users benefit from an automatic dependency check and installation feature upon initiating SaGe Launcher.
+
+## Configuration and Usage 🖥
+
+Set environment variables crucial for PCSG-guided fuzzing:
 
 ```shell
 export COLLECT_TREE_INFO=true
@@ -23,86 +30,63 @@ export INVALID_TREE_PATH="$SAGE_PATH/invalid_tree/invalid_tree.pickle"
 export RULE_INFO_PATH="$SAGE_PATH/invalid_tree/global_info.pickle"
 ```
 
-Next, use ```python main.py --help``` to show how it works.
+### Executing SaGe with `sage_launcher.sh` and sage_watcher.sh`
 
-```
-Usage: python main [-options] -o output_dir
+Utilize the `sage_launcher.sh` script for streamlined execution. 
 
-Options:
-  -h, --help            show this help message and exit
-  -f FUZZER, --fuzzer=FUZZER
-                        choose a fuzzer (default: sage)
-  -b BROWSER, --browser=BROWSER
-                        choose a browser (default: webkitgtk)
-  -t TIMEOUT, --timeout=TIMEOUT
-                        timeout of each test (ms) (default: 5000ms)
-  -p PARALLEL, --parallel=PARALLEL
-                        how many instances in parallel (default: 1)
-  -o OUTPUT_DIR, --output_dir=OUTPUT_DIR
-                        where the result should output
-  -e TIME_TO_EXIT, --time_to_exit=TIME_TO_EXIT
-                        time to exit the fuzzing (hour)
-  -x EXECUTION_ITERATION, --execution_iteration=EXECUTION_ITERATION
-                        exit after this iteration
-```
+This script encompasses dependency checks, environmental setup, and execution controls in one command. 
 
-For each kind of browser, we need to set environment variables to specify the path of the target browser and the path of the corresponding webdriver. What follows are the commands for fuzzing WebKit, Chrome, and Firefox:
 
-### Fuzzing WebKit
+### Monitoring live with `sage_watcher.sh`
+
+To monitor fuzzing in real-time, run `./sage_watcher.sh` after starting `sage_launcher.sh` in a second terminal tab/window.
+
+![sage_watcher.sh Demo Image](demo.png)
+
+#### Command-Line Options 🔍
+
+- **Browser Selection**: Choose among `--firefox`, `--webkitgtk`, and `--chromium` for targeted fuzzing.
+- **Fuzzer Choice**: Select a fuzzer through `--fuzzer` with options including `domato`, `minerva`, `freedom`, `sage`, `favocado`.
+- **Clean Start**: Utilize `--kill-old` to terminate existing instances for a fresh testing environment.
+- **Resource Management**: Activate the `--watchdog` for intelligent resource monitoring and management.
+- **Session Timing**: Control the fuzzing duration with `--timerpurge`, specifying a numeric value for the session limit.
+
+### Examples for Each Browser 🌍
+
+#### Fuzzing WebKit
+
+For users interested in WebKit, an example WebKit builder is located in the `browserbuilders` folder. Configure environment variables accordingly:
 
 ```shell
 export WEBKIT_BINARY_PATH="$WEBKIT_PATH/MiniBrowser"
 export WEBKIT_WEBDRIVER_PATH="$WEBKIT_PATH/WebKitWebDriver"
-# max timeout for each input is 10000 ms, 10 instances are created for parallel, target browser is webkitgtk, fuzzing outputs are save in $PWD/output
-python3 main.py -t 10000 -b webkitgtk -p 10 -o $PWD/output
+./sage_launcher.sh --webkitgtk 5
 ```
 
-### Fuzzing Chrome
+#### Fuzzing Chrome
+
+Set up Chrome for fuzzing with the following environment variables and execute the script:
 
 ```shell
 export CHROMIUM_PATH="$C_PATH/chrome"
 export CHROMEDRIVER_PATH="$C_PATH/chromedriver"
-# max timeout for each input is 10000 ms, 10 instances are created for parallel, target browser is chrome, fuzzing outputs are save in $PWD/output
-python3 main.py -t 10000 -b chromium -p 10 -o $PWD/output
+./sage_launcher.sh --chromium 5
 ```
 
-### Fuzzing Firefox
+#### Fuzzing Firefox
+
+Prepare Firefox for fuzzing by setting up its environment variables and start the process:
 
 ```shell
 export FIREFOXDRIVER_PATH="$F_PATH/geckodriver"
 export FIREFOX_PATH="$F_PATH/firefox"
-# max timeout for each input is 10000 ms, 10 instances are created for parallel, target browser is firefox, fuzzing outputs are save in $PWD/output
-python3 main.py -t 10000 -b firefox -p 10 -o $PWD/output
+./sage_launcher.sh --firefox 5
 ```
 
-### Fuzzing other browsers
+## Academic Contributions 🎓
 
-This tool can adapt to any other browsers that are based on the three browsers. Generally speaking, almost all browsers are built on the top of the above three browsers. If users want to test a browser other than the three, they need to implement a subclass of ``FuzzedBrowser`` in the ``browser_adapters`` directory, and register itself in the ``get_browser()`` function of ``browser_selenium.py``.
+Our approach and the detailed workings of SaGe are described in a publication accepted by OOPSLA 2023. For enthusiasts and researchers, a Docker environment is available for replicating our experiments, ensuring a seamless experience in understanding the tool's capabilities.
 
-## Implementation/Configuration Details
-- If you don’t want to use Xvfb, set ``export NO_XVFB=true`` before running ``main.py``.
-- During fuzzing, suppose we set p=2, this means that we create two (almost) separated browser instances, and each of them creates a new tab for handling one fuzzing input. If a browser crashes, the fuzzer will close it and create a new browser instance for testing.
-- Browsers may crash because of long-term running. For stability, the fuzzer will close an instance with 1% probability. Users can use ``CLOSE_BROWSER_PROB`` to change this setting. For example, ``export CLOSE_BROWSER_PROB=0.05`` will set the probability to 5%.
+## Acknowledgements 👏
 
-## Publication
-
-The paper which describes the design detail of this browser fuzzer is accepted by OOPSLA 2023 ([doi](https://doi.org/10.1145/3622819)). BibTeX Citation is 
-
-```bibtex
-@article{zhou2023towards,
-  title={Towards Better Semantics Exploration for Browser Fuzzing},
-  author={Zhou, Chijin and Zhang, Quan and Guo, Lihua and Wang, Mingzhe and Jiang, Yu and Liao, Qing and Wu, Zhiyong and Li, Shanshan and Gu, Bin},
-  journal={Proceedings of the ACM on Programming Languages},
-  volume={7},
-  number={OOPSLA2},
-  pages={604--631},
-  year={2023},
-  publisher={ACM New York, NY, USA}
-}
-```
-
-The artifact of this paper is available at [zenodo](https://doi.org/10.5281/zenodo.8328742), which includes a docker environment for reproducing the experitmental results in the paper. The artifact passed the OOPSLA'23 Artifact Evaluation and earned all badges.
-
-## Acknowledgement
-
-We build the fuzzer on the top of [Domato](https://github.com/googleprojectzero/domato) for input generation.
+We extend our heartfelt gratitude to the Domato project, and Google for their foundational input generation techniques, which have significantly contributed to enhancing SaGe's fuzzing methodologies.
