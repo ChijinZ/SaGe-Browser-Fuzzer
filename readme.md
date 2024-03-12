@@ -3,7 +3,7 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8328742.svg)](https://doi.org/10.5281/zenodo.8328742)
 
-Welcome to SaGe Browser Fuzzer, a cutting-edge tool designed for the intricate exploration of web browser semantics 🚀. 
+Welcome to SaGe, a browser fuzzer designed for the intricate exploration of web browser semantics 🚀. 
 
 Developed with a focus on identifying and cataloging internal browser JS vulnerabilities, SaGe offers an automated, comprehensive suite of features for thorough browser testing via PCSG-guided fuzzing.
 
