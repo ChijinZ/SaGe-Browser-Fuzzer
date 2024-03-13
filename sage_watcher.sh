@@ -5,10 +5,10 @@
 
 check_script_requirements() {
     # Check if script is run as root
-    if [ "$(id -u)" != "0" ]; then
-        echo "This script must be run as root" >&2
-        exit 1
-    fi
+  #  if [ "$(id -u)" != "0" ]; then
+       # echo "This script must be run as root" >&2
+      #  exit 1
+  #  fi
 
     # List of required commands
     local required_cmds=("lsb_release" "grep" "dpkg-query" "ulimit" "tmux" "find" "sort" "comm" "basename" "tail" "watch" "stat" "python3" "pip3")
